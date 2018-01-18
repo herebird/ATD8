@@ -28,11 +28,11 @@ fi
 
 # Set
 MYIP2="s/IP-Server/$MYIP/g";
-Source="https://dl.dropboxusercontent.com/s/9oqskrucmho3cu9/IP.txt"
+#Source="https://dl.dropboxusercontent.com/s/9oqskrucmho3cu9/IP.txt"
 
 # Check Registered IP
-wget -q -O /usr/bin/IP $Source
-if ! grep -w -q $MYIP /usr/bin/IP; then
+#wget -q -O /usr/bin/IP $Source
+#if ! grep -w -q $MYIP /usr/bin/IP; then
   clear
   echo "
 --------------------------------------------------------------
@@ -44,9 +44,9 @@ if ! grep -w -q $MYIP /usr/bin/IP; then
 
 [√] หากต้องการใช้งานสคริปโปรดติดต่อลงทะเบียนได้ที่
 
-[√] เฟชบุ๊ค : https://www.facebook.com/tae.taruma
+[√] เฟชบุ๊ค : https://www.facebook.com/ceolnw
 
-[√] แฟนเพจ : https://www.facebook.com/byvpn.net
+[√] แฟนเพจ : https://www.facebook.com/ceolnw
 --------------------------------------------------------------
 "
 	rm /usr/bin/IP
@@ -61,7 +61,7 @@ clear
 echo "
 ----------------------------------------------------------------------
 
-[√] ยินดีต้อนรับเข้าสู่ BYVPN.NET 
+[√] ยินดีต้อนรับเข้าสู่ เฮียเบิร์ด.com 
 
 [√] เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
 
@@ -387,23 +387,23 @@ cd /etc/openvpn/
 # Create OpenVPN Config
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
-## [+] ยินดีต้อนรับเข้าสู่ BYVPN.NET เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
+## [+] ยินดีต้อนรับเข้าสู่ WWW.เฮียเบิร์ด.COM เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
 ##
 ## [+] เกี่ยวกับผู้พัฒนา
 ##
-## [+] โดย : คุณเต้ ทารุมะ (เต้เล็ก)
+## [+] โดย : ธนกร เนียนทศาสตร์ (เฮียเบิร์ด)
 ##
-## [+] เบอร์โทร : 095-4172543
+## [+] เบอร์โทร : 097-026-7262
 ##
-## [+] ไอดีลาย : Ns.NeverDie
+## [+] ไอดีลาย : Ceolnw
 ##
-## [+] เฟชบุ๊ค : https://www.facebook.com/tae.taruma
+## [+] เฟชบุ๊ค : https://www.facebook.com/ceolnw
 ##
-## [+] แฟนเพจ : https://www.facebook.com/byvpn.net
+## [+] แฟนเพจ : https://www.facebook.com/ceolnw
 ##
-## [+] เว็บไซต์ : https://www.byvpn.net
+## [+] เว็บไซต์ : https://www.เฮียเบิร์ด.com
 ##
-## [+] ลิขสิทธิ์ : © Copyright 2017 byvpn.net all rights reserved.
+## [+] ลิขสิทธิ์ : © Copyright 2018 เฮียเบิร์ด.com all rights reserved.
 client
 proto tcp
 dev tun
@@ -550,23 +550,23 @@ service fail2ban restart
 # Install Squid3
 apt-get -y install squid3;
 cat > /etc/squid3/squid.conf <<-END
-## [+] ยินดีต้อนรับเข้าสู่ BYVPN.NET เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
+## [+] ยินดีต้อนรับเข้าสู่ WWW.เฮียเบิร์ด.COM เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
 ##
 ## [+] เกี่ยวกับผู้พัฒนา
 ##
-## [+] โดย : คุณเต้ ทารุมะ (เต้เล็ก)
+## [+] โดย : ธนกร เนียนทศาสตร์ (เฮียเบิร์ด)
 ##
-## [+] เบอร์โทร : 095-4172543
+## [+] เบอร์โทร : 097-026-7262
 ##
-## [+] ไอดีลาย : Ns.NeverDie
+## [+] ไอดีลาย : Ceolnw
 ##
-## [+] เฟชบุ๊ค : https://www.facebook.com/tae.taruma
+## [+] เฟชบุ๊ค : https://www.facebook.com/ceolnw
 ##
-## [+] แฟนเพจ : https://www.facebook.com/byvpn.net
+## [+] แฟนเพจ : https://www.facebook.com/ceolnw
 ##
-## [+] เว็บไซต์ : https://www.byvpn.net
+## [+] เว็บไซต์ : https://www.เฮียเบิร์ด.com
 ##
-## [+] ลิขสิทธิ์ : © Copyright 2017 byvpn.net all rights reserved.
+## [+] ลิขสิทธิ์ : © Copyright 2018 เฮียเบิร์ด.com all rights reserved.
 acl manager proto cache_object
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
@@ -738,4 +738,4 @@ echo "   - Vnstat                  : http://$MYIP:81/vnstat/"  | tee -a log-inst
 echo "   - MRTG                    : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
 echo "   - Log Instalasi           : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "----------- Script Server VPS By Tae.TaRuMa ------------"
+echo "----------- สคริปออโต้ www.เฮียเบิร์ด.com ขอบคุณครับ------------"
