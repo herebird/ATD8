@@ -26,39 +26,6 @@ if [ $MYIP = "" ]; then
    MYIP=`ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1`;
 fi
 
-# Set
-MYIP2="s/IP-Server/$MYIP/g";
-#Source="https://dl.dropboxusercontent.com/s/9oqskrucmho3cu9/IP.txt"
-
-# Check Registered IP
-#wget -q -O /usr/bin/IP $Source
-#if ! grep -w -q $MYIP /usr/bin/IP; then
-#  clear
-#  echo "
-#--------------------------------------------------------------
-#[+] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ เฮียเบิร์ด.COM
-
-#[+] เฉพาะ IP Server ที่จดทะเบียนแล้วสามารถใช้สคริปต์นี้ได้เท่านั่น
-
-#[+] ราคา 1 IP = 100 บาท ใช้งานได้ทุกระบบ
-
-#[√] หากต้องการใช้งานสคริปโปรดติดต่อลงทะเบียนได้ที่
-
-#[√] เฟชบุ๊ค : https://www.facebook.com/ceolnw
-
-#[√] แฟนเพจ : https://www.facebook.com/ceolnw
-#--------------------------------------------------------------
-#"
-#	rm /usr/bin/IP
-#	rm -f /usr/bin/IP
-#	rm /root/debian8.sh
-#	rm -f /root/debian8.sh
-#  history -c
-#	exit
-
-#fi
-#clear
-#echo "
 ----------------------------------------------------------------------
 
 [√] ยินดีต้อนรับเข้าสู่ เฮียเบิร์ด.com 
