@@ -5,12 +5,12 @@ sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_
 service ssh restart
 
 
-# Initialisasi Var
+# INSTALL VAR
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
 
 
-# Go To Root
+# GO TO ROOT
 cd
 
 clear
@@ -22,14 +22,14 @@ echo "
 ----------------------------------------------
  "
  sleep 10
-# 
+# GO TO BOXES
 apt-get install boxes
 
-# 
+# INSTALL RUBY
 sudo apt-get install ruby
 sudo gem install lolcat
 
-# 
+# SETUP BASHRC
 cd
 rm -rf /root/.bashrc
 wget -O /root/.bashrc $source/debian7/.bashrc
@@ -45,7 +45,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Requirement
+# UPDATE SYSTEM
 if [ ! -e /usr/bin/curl ]; then
   apt-get -y update; apt-get -y upgrade; apt-get -y install curl;
 fi
@@ -61,7 +61,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Disable IPv6
+# DISABLE IPV6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
@@ -76,7 +76,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Add DNS Server IPv4
+# ADD DNS SERVER IPV4
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 sed -i '$ i\echo "nameserver 8.8.8.8" > /etc/resolv.conf' /etc/rc.local
@@ -93,7 +93,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install Wget And Curl
+# INSTALL WGET AND CURL
 apt-get update; apt-get -y install wget curl;
 
 
@@ -107,7 +107,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Set Time GMT +7
+# SET TIME GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
 
@@ -121,7 +121,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Set Banner SSH
+# SET BANNER SSH
 echo "Banner /bannerssh" >> /etc/ssh/sshd_config
 cat > /bannerssh <<END0
 
@@ -139,7 +139,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Set Locale
+# SET LOCALE
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 service ssh restart
@@ -155,7 +155,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Set Repo
+# SET REPO
 cat > /etc/apt/sources.list <<END2
 deb http://cdn.debian.net/debian wheezy main contrib non-free
 deb http://security.debian.org/ wheezy/updates main contrib non-free
@@ -174,7 +174,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Remove Unused
+# REMOVE UNUSE
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
 apt-get -y --purge remove sendmail*;
@@ -192,7 +192,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Update
+# UPDATE
 apt-get update; apt-get -y upgrade;
 
 
@@ -205,7 +205,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install WebServer
+# INSTALL WEBSERVER
 apt-get -y install nginx; apt-get -y install php5-fpm; apt-get -y install php5-cli;
 
 
@@ -218,7 +218,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install Essential Package
+# INSTALL ESSENTIAL PACKAGE
 echo "mrtg mrtg/conf_mods boolean true" | debconf-set-selections
 apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter; apt-get -y install build-essential;
 
@@ -232,7 +232,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Disable Exim
+# DISABLE EXIM
 service exim4 stop
 sysv-rc-conf exim4 off
 
@@ -246,7 +246,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Update apt-file
+# UPDATE APT-FILE
 apt-file update;
 
 
@@ -259,7 +259,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Setting Vnstat
+# SETTING VNSTAT
 vnstat -u -i eth0
 service vnstat restart
 
@@ -273,7 +273,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install ScreenFetch
+# INSTALL SCREENFETCH
 cd
 wget -O /usr/bin/screenfetch "https://dl.dropboxusercontent.com/s/ycyegwijkdekv4q/screenfetch"
 chmod +x /usr/bin/screenfetch
@@ -290,7 +290,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install WebServer
+# INSTALL WEBSERVER
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
@@ -377,7 +377,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install OpenVPN
+# INSTALL OPENVPN
 apt-get -y install openvpn; apt-get -y install iptables; apt-get -y install openssl;
 cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
 
@@ -391,7 +391,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Easy-rsa
+# INSTALL EASY-RSA
 if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
 	wget --no-check-certificate -O ~/easy-rsa.tar.gz https://dl.dropboxusercontent.com/s/cqhoz85lxvczqr2/easy-rsa-2.2.2.tar.gz
     tar xzf ~/easy-rsa.tar.gz -C ~/
@@ -413,7 +413,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Benarkan Errornya
+# SET REALLY ERROR
 cp -u -p openssl-1.0.0.cnf openssl.cnf
 
 
@@ -427,7 +427,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Ganti Bits
+# SET REPLACEBITS
 sed -i 's|export KEY_SIZE=1024|export KEY_SIZE=2048|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="TH"|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Thailand"|' /etc/openvpn/easy-rsa/2.0/vars
@@ -450,7 +450,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Buat PKI
+# CREATE PKI
 . /etc/openvpn/easy-rsa/2.0/vars
 . /etc/openvpn/easy-rsa/2.0/clean-all
 
@@ -465,7 +465,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Buat Sertifikat
+# CREATE CERTIFICATE
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --initca $*
 
@@ -480,7 +480,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Buat Key Server
+# CREATE KEY SERVER
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --server server
 
@@ -495,7 +495,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Seting KEY CN
+# SETTING KEY CN
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" client
 
@@ -510,7 +510,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# DH Params
+# DH PARAMS
 . /etc/openvpn/easy-rsa/2.0/build-dh
 
 
@@ -524,7 +524,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Setting Server
+# SETTING SERVER
 cat > /etc/openvpn/server.conf <<-END
 port 1194
 proto tcp
@@ -569,7 +569,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Create OpenVPN Config
+# CREATE OPENVPN CONFIG
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
 ## [+] ยินดีต้อนรับเข้าสู่ WWW.เฮียเบิร์ด.COM เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
@@ -592,7 +592,7 @@ cat > /home/vps/public_html/client.ovpn <<-END
 client
 proto tcp
 dev tun
-remote BYVPN.NET 9999 udp
+remote เฮียเบิร์ด.com 9999 udp
 <connection>
 remote $MYIP:1194@lvs.truehits.in.th 1194 tcp
 </connection>
@@ -631,7 +631,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Set IPv4 Forward
+# SET IPV4 FORWARD
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 sed -i 's|net.ipv4.ip_forward=0|net.ipv4.ip_forward=1|' /etc/sysctl.conf
@@ -647,7 +647,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Restart OpenVPN
+# RESTART OPENVPN
 /etc/init.d/openvpn restart
 
 
@@ -661,7 +661,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install PPTP
+# INSTALL PPTP
 apt-get -y install pptpd;
 cat > /etc/ppp/pptpd-options <<END
 name pptpd
@@ -698,7 +698,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install badvpn
+# INSTALL BADVPN
 wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/yj7gj6melefqiwc/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
   wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/gqd1rjy1nw0yyd8/badvpn-udpgw64"
@@ -718,7 +718,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install mrtg
+# INSTALL MRTG
 wget -O /etc/snmp/snmpd.conf "https://dl.dropboxusercontent.com/s/h43jmsru1i5prkf/snmpd.conf"
 wget -O /root/mrtg-mem.sh "https://dl.dropboxusercontent.com/s/xlm1ybd8miutqs6/mrtg-mem.sh"
 chmod +x /root/mrtg-mem.sh
@@ -751,7 +751,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Setting Port Ssh
+# SETTING PORT SSH
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  90' /etc/ssh/sshd_config
 sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
@@ -768,7 +768,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install DropBear
+# INSTALL DROPBEAR
 apt-get -y install dropbear;
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
@@ -788,7 +788,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Update to Dropbear 2016
+# UPDATE TO DROPBEAR 2016
 cd
 apt-get install zlib1g-dev;
 wget https://dl.dropboxusercontent.com/s/udwltlqcscfoxmv/dropbear-2016.74.tar.bz
@@ -812,7 +812,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install Vnstat Gui
+# INSTALL VBSTAT GUI
 cd /home/vps/public_html/
 wget https://dl.dropboxusercontent.com/s/1rzq3xbxg1mbwli/vnstat_php_frontend-1.5.1.tar.gz
 tar xf vnstat_php_frontend-1.5.1.tar.gz
@@ -838,7 +838,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install fail2ban
+# INSTALL FAIL2BAN
 apt-get -y install fail2ban;
 service fail2ban restart
 
@@ -853,7 +853,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install Squid3
+# INSTALL SQUID3
 apt-get -y install squid3;
 cat > /etc/squid3/squid.conf <<-END
 ## [+] ยินดีต้อนรับเข้าสู่ WWW.เฮียเบิร์ด.COM เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
@@ -919,7 +919,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Install Webmin
+# INSTALL WEBMIN
 cd
 wget "https://dl.dropboxusercontent.com/s/f5oukvrl6rxxizz/webmin_1.801_all.deb"
 dpkg --install webmin_1.801_all.deb;
@@ -941,7 +941,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Setting IPtables
+# SETTING IPTAPLES
 cat > /etc/iptables.up.rules <<-END
 *nat
 :PREROUTING ACCEPT [0:0]
@@ -1011,7 +1011,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Download Script
+# DOWNLOAD SCRIPT
 cd
 wget https://dl.dropboxusercontent.com/s/vcd7jdd7i2bg5bd/install-premiumscript.sh -O - -o /dev/null|sh
 
@@ -1026,7 +1026,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Finalisasi
+# FINALISASI
 apt-get -y autoremove;
 chown -R www-data:www-data /home/vps/public_html
 service nginx restart
@@ -1057,7 +1057,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# Clearing History
+# CLEARING HISTORY
 history -c
 
 
@@ -1066,29 +1066,29 @@ clear
 echo "
 ----------------------------------------------
 [√] System : เฮียเบิร์ด.com 
-[√] Connect...Info
-[√] กำลังเริ่มติดตั้ง : Info.... [ OK !! ]
+[√] Connect...เสร็จสิ้นการติดตั้ง
+[√] กำลังเรียกข้อมูล : Info.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# Info
+# INFO
 clear
 echo "--------------------------------------------------------------------------------"
 echo ""  | tee -a log-install.txt
-echo "Informasi Server"  | tee -a log-install.txt
-echo "   - TimeZone    : Asia/Bangkok (GMT +7)"  | tee -a log-install.txt
-echo "   - Fail2Ban    : [on]"  | tee -a log-install.txt
-echo "   - IPtables    : [on]"  | tee -a log-install.txt
-echo "   - Auto-Reboot : [off]"  | tee -a log-install.txt
-echo "   - IPv6        : [off]"  | tee -a log-install.txt
+echo "INFROMATION SERVER"  | tee -a log-install.txt
+echo "   - TIMEZONE    : Asia/Bangkok (GMT +7)"  | tee -a log-install.txt
+echo "   - FAIL2BAN    : [on]"  | tee -a log-install.txt
+echo "   - IPTABLES    : [on]"  | tee -a log-install.txt
+echo "   - AUTO-REBOOT : [off]"  | tee -a log-install.txt
+echo "   - IPV6        : [off]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Informasi Aplikasi & Port"  | tee -a log-install.txt
-echo "   - OpenVPN    : 1194 "  | tee -a log-install.txt
-echo "   - OpenSSH     : 22,143"  | tee -a log-install.txt
-echo "   - Dropbear      : 109,110,443"  | tee -a log-install.txt
-echo "   - Squid Proxy : 80,3128,8000,8080 (limit to IP Server)"  | tee -a log-install.txt
-echo "   - Badvpn      : 7300"  | tee -a log-install.txt
-echo "   - Nginx       : 81"  | tee -a log-install.txt
+echo "INFORMATION APLINK & PORT"  | tee -a log-install.txt
+echo "   - OPENVPN     : 1194 "  | tee -a log-install.txt
+echo "   - OPENSSH     : 22,143"  | tee -a log-install.txt
+echo "   - DROPBEAR    : 109,110,443"  | tee -a log-install.txt
+echo "   - SQUID PROXY : 80,3128,8000,8080 (limit to IP Server)"  | tee -a log-install.txt
+echo "   - BADVPN      : 7300"  | tee -a log-install.txt
+echo "   - NGINX       : 81"  | tee -a log-install.txt
 echo "   - PPTP VPN    : 1732"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Informasi Tools Dalam Server"  | tee -a log-install.txt
