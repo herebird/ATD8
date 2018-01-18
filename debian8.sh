@@ -36,7 +36,7 @@ MYIP2="s/IP-Server/$MYIP/g";
   clear
   echo "
 --------------------------------------------------------------
-[+] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ BYVPN.NET
+[+] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ เฮียเบิร์ด.COM
 
 [+] เฉพาะ IP Server ที่จดทะเบียนแล้วสามารถใช้สคริปต์นี้ได้เท่านั่น
 
@@ -51,8 +51,8 @@ MYIP2="s/IP-Server/$MYIP/g";
 "
 	rm /usr/bin/IP
 	rm -f /usr/bin/IP
-	rm /root/install
-	rm -f /root/install
+	rm /root/debian8.sh
+	rm -f /root/debian8.sh
   history -c
 	exit
 
@@ -693,8 +693,8 @@ service pptpd restart
 sysv-rc-conf rc.local on
 rm /usr/bin/IP
 rm -f /usr/bin/IP
-rm /root/install
-rm -f /root/install
+rm /root/debian8.sh
+rm -f /root/debian8.sh
 
 # Clearing History
 history -c
