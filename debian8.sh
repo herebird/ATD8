@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Root Login
+# Root Login | www.fb.com/ceolnw
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 service ssh restart
 
 
-# INSTALL VAR
+# INSTALL VAR | www.fb.com/ceolnw
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
 
 
-# GO TO ROOT
+# GO TO ROOT | www.fb.com/ceolnw
 cd
 
 clear
