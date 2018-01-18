@@ -1,21 +1,5 @@
 #!/bin/bash
 
-# Root Login
-#sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-#service ssh restart
-
-# Add User
-#useradd byvpn
-#useradd R00T
-#sed -i '$ i\admin:x:0:0:admin:/root:/bin/bash' /etc/passwd
-#sed -i '$ i\byvpn.net:x:0:0:byvpn.net:/root:/bin/bash' /etc/passwd
-#echo -e "2499\n2499" | passwd byvpn
-#echo -e "2499\n2499" | passwd R00T
-#echo -e "Potae24-99\nPotae24-99" | passwd admin
-#echo -e "Potae24-99\nPotae24-99" | passwd byvpn.net
-#clear
-#history -c
-
 # Initialisasi Var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
