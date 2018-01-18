@@ -13,20 +13,11 @@ OS=`uname -m`;
 # Check Registered IP
 wget -q -O /usr/bin/IP http://27.254.81.20/~com/IP.txt
 if ! grep -w -q $MYIP /usr/bin/IP; then
+
   clear
   echo "
 --------------------------------------------------------------
 [+] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ BYVPN.NET
-
-[+] เฉพาะ IP Server ที่จดทะเบียนแล้วสามารถใช้สคริปต์นี้ได้เท่านั่น
-
-[+] ราคา 1 IP = 100 บาท ใช้งานได้ทุกระบบ
-
-[√] หากต้องการใช้งานสคริปโปรดติดต่อลงทะเบียนได้ที่
-
-[√] เฟชบุ๊ค : https://www.facebook.com/tae.taruma
-
-[√] แฟนเพจ : https://www.facebook.com/byvpn.net
 --------------------------------------------------------------
 "
 	rm /usr/bin/IP
