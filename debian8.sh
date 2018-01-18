@@ -15,73 +15,112 @@ cd
 
 clear
 echo "
-----------------------------------------------------------------------
-
-[√] Requirement [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Setting vps
+[√] กำลังเริ่มติดตั้ง : vpsconfig..... [ OK !! ]
+----------------------------------------------
  "
+ sleep 10
+# 
+apt-get install boxes
+
+# 
+sudo apt-get install ruby
+sudo gem install lolcat
+
+# 
+cd
+rm -rf /root/.bashrc
+wget -O /root/.bashrc $source/debian7/.bashrc
+
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Requirement
+[√] กำลังเริ่มติดตั้ง : Requirement..... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Requirement
 if [ ! -e /usr/bin/curl ]; then
   apt-get -y update; apt-get -y upgrade; apt-get -y install curl;
 fi
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[√] กำลังปิดใช้งาน IPv6 [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Disable IPv6
+[√] กำลังเริ่มปิดใช้งาน : IPv6..... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Disable IPv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[√] กำลังเพิ่ม DNS Server IPv4 [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...DNS Server IPv4
+[√] กำลังเริ่มติดตั้ง : DNS IPv4..... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Add DNS Server IPv4
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 sed -i '$ i\echo "nameserver 8.8.8.8" > /etc/resolv.conf' /etc/rc.local
 sed -i '$ i\echo "nameserver 8.8.4.4" >> /etc/resolv.conf' /etc/rc.local
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[√] กำลังติดตั้ง Wget และ Curl [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Wget Curl
+[√] กำลังเริ่มติดตั้ง : Wget Curl..... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Install Wget And Curl
 apt-get update; apt-get -y install wget curl;
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[+] Set Time GMT +7 [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Time zone
+[√] กำลังเริ่มติดตั้ง : Time GMT +7.... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Set Time GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[+] Set Bangner SSH [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Bangner SSH
+[√] กำลังเริ่มติดตั้ง : Bangner SSH.... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Set Banner SSH
 echo "Banner /bannerssh" >> /etc/ssh/sshd_config
 cat > /bannerssh <<END0
@@ -89,27 +128,33 @@ cat > /bannerssh <<END0
 <BR><font color="#00B146">================</font></BR> <BR><font color='#860000'><h3>NO SPAM !!!</h3></BR></font> <BR><font color='#1E90FF'><h3>NO DDOS !!!</h3></BR></font> <BR><font color='#FF0000'><h3>NO HACKING !!!</h3></BR></font> <BR><font color='#008080'><h3>NO CARDING !!!</h3></BR></font> <BR><font color='#BA55D3'><h3>NO CRIMINAL CYBER !!!</h3></BR></font> <BR><font color='#32CD32'><h3>MAX LOGIN 2 DEVICE !!!</h3></BR></font> <BR><font color="#00B146">================</font></BR> <BR><font color="#0082D8"><h3>★ Facebook คุณเต้ ทารุมะ (เต้เล็ก) ★</h3> </font></BR> <BR><font color="#00B146">================</font></BR>
 END0
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[+] Set Locale [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Locale
+[√] กำลังเริ่มติดตั้ง : Locale.... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Set Locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 service ssh restart
 
+
+
 clear
 echo "
-----------------------------------------------------------------------
-
-[√] Set Repo [ OK !! ]
-
-----------------------------------------------------------------------
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Repo
+[√] กำลังเริ่มติดตั้ง : Repo.... [ OK !! ]
+----------------------------------------------
  "
+ sleep 5
 # Set Repo
 cat > /etc/apt/sources.list <<END2
 deb http://cdn.debian.net/debian wheezy main contrib non-free
@@ -120,6 +165,15 @@ wget "http://www.dotdeb.org/dotdeb.gpg"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
 
 
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Unused
+[√] กำลังเริ่มนำออก : apt-get.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Remove Unused
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
@@ -128,27 +182,97 @@ apt-get -y --purge remove bind9*;
 apt-get -y purge sendmail*;
 apt-get -y remove sendmail*;
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Update
+[√] กำลังเริ่มนำออก : Update.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Update
 apt-get update; apt-get -y upgrade;
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...WebServer
+[√] กำลังเริ่มติดตั้ง : WebServer.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install WebServer
 apt-get -y install nginx; apt-get -y install php5-fpm; apt-get -y install php5-cli;
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Essential
+[√] กำลังเริ่มติดตั้ง : Essential.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install Essential Package
 echo "mrtg mrtg/conf_mods boolean true" | debconf-set-selections
 apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter; apt-get -y install build-essential;
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Exim
+[√] กำลังเริ่มปิด : Exim.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Disable Exim
 service exim4 stop
 sysv-rc-conf exim4 off
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...apt-file
+[√] กำลังเริ่มติดตั้ง : apt-file.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Update apt-file
 apt-file update;
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Vnstat
+[√] กำลังเริ่มตั้งค่า : Vnstat.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Setting Vnstat
 vnstat -u -i eth0
 service vnstat restart
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...ScreenFetch
+[√] กำลังเริ่มติดตั้ง : ScreenFetch.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install ScreenFetch
 cd
 wget -O /usr/bin/screenfetch "https://dl.dropboxusercontent.com/s/ycyegwijkdekv4q/screenfetch"
@@ -156,6 +280,16 @@ chmod +x /usr/bin/screenfetch
 echo "clear" >> .profile
 echo "screenfetch" >> .profile
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...WebServer
+[√] กำลังเริ่มติดตั้ง : WebServer.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install WebServer
 cd
 rm /etc/nginx/sites-enabled/default
@@ -233,10 +367,30 @@ sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php
 service php5-fpm restart
 service nginx restart
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...OpenVPN
+[√] กำลังเริ่มติดตั้ง : OpenVPN.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install OpenVPN
 apt-get -y install openvpn; apt-get -y install iptables; apt-get -y install openssl;
 cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
 
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Easy-rsa
+[√] กำลังเริ่มติดตั้ง : Easy-rsa.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Easy-rsa
 if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
 	wget --no-check-certificate -O ~/easy-rsa.tar.gz https://dl.dropboxusercontent.com/s/cqhoz85lxvczqr2/easy-rsa-2.2.2.tar.gz
@@ -248,9 +402,31 @@ if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
 fi
 cd /etc/openvpn/easy-rsa/2.0/
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Really Error
+[√] กำลังเริ่มติดตั้ง : Really Error.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Benarkan Errornya
 cp -u -p openssl-1.0.0.cnf openssl.cnf
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Replace Bits
+[√] กำลังเริ่มติดตั้ง : Replace Bits.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Ganti Bits
 sed -i 's|export KEY_SIZE=1024|export KEY_SIZE=2048|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="TH"|' /etc/openvpn/easy-rsa/2.0/vars
@@ -263,25 +439,91 @@ sed -i 's|export KEY_CN=changeme|export KEY_CN="BYVPN.NET"|' /etc/openvpn/easy-r
 sed -i 's|export KEY_NAME=changeme|export KEY_NAME=BYVPN.NET|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_OU=changeme|export KEY_OU=BYVPN.NET|' /etc/openvpn/easy-rsa/2.0/vars
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Create a PKI
+[√] กำลังเริ่มติดตั้ง : Create a PKI.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Buat PKI
 . /etc/openvpn/easy-rsa/2.0/vars
 . /etc/openvpn/easy-rsa/2.0/clean-all
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Create a Certificate
+[√] กำลังเริ่มติดตั้ง : Create a Certificate.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Buat Sertifikat
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --initca $*
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Create a Key Server
+[√] กำลังเริ่มติดตั้ง : Create a Key Server.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Buat Key Server
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --server server
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Setting KEY CN
+[√] กำลังเริ่มติดตั้ง : Setting KEY CN.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Seting KEY CN
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" client
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...DH Params
+[√] กำลังเริ่มติดตั้ง : DH Params.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # DH Params
 . /etc/openvpn/easy-rsa/2.0/build-dh
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Setting Server
+[√] กำลังเริ่มติดตั้ง : Setting Server.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Setting Server
 cat > /etc/openvpn/server.conf <<-END
 port 1194
@@ -316,6 +558,17 @@ cd /etc/openvpn/easy-rsa/2.0/keys
 cp ca.crt ca.key dh2048.pem server.crt server.key /etc/openvpn
 cd /etc/openvpn/
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...OpenVPN Config
+[√] กำลังเริ่มติดตั้ง : OpenVPN Configr.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Create OpenVPN Config
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
@@ -367,14 +620,47 @@ cat /etc/openvpn/ca.crt >> /home/vps/public_html/client.ovpn
 echo '</ca>' >> /home/vps/public_html/client.ovpn
 cd
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...IPv4 Forward
+[√] กำลังเริ่มติดตั้ง : IPv4 Forward.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Set IPv4 Forward
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 sed -i 's|net.ipv4.ip_forward=0|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Restart OpenVPN
+[√] กำลังเริ่มติดตั้ง : Restart OpenVPN.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Restart OpenVPN
 /etc/init.d/openvpn restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...PPTP
+[√] กำลังเริ่มติดตั้ง : PPTP.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install PPTP
 apt-get -y install pptpd;
 cat > /etc/ppp/pptpd-options <<END
@@ -401,6 +687,17 @@ END
 mkdir /var/lib/premium-script
 /etc/init.d/pptpd restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...badvpn
+[√] กำลังเริ่มติดตั้ง : badvpn.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install badvpn
 wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/yj7gj6melefqiwc/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
@@ -410,6 +707,17 @@ sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/
 chmod +x /usr/bin/badvpn-udpgw
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...mrtg
+[√] กำลังเริ่มติดตั้ง : mrtg.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install mrtg
 wget -O /etc/snmp/snmpd.conf "https://dl.dropboxusercontent.com/s/h43jmsru1i5prkf/snmpd.conf"
 wget -O /root/mrtg-mem.sh "https://dl.dropboxusercontent.com/s/xlm1ybd8miutqs6/mrtg-mem.sh"
@@ -432,12 +740,34 @@ if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then
 mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
 cd
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Port Ssh
+[√] กำลังเริ่มติดตั้ง : Port Ssh.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Setting Port Ssh
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  90' /etc/ssh/sshd_config
 sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
 service ssh restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...DropBear
+[√] กำลังเริ่มติดตั้ง : DropBear.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install DropBear
 apt-get -y install dropbear;
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
@@ -447,6 +777,17 @@ echo "/bin/false" >> /etc/shells
 service ssh restart
 service dropbear restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Dropbear 2016
+[√] กำลังเริ่มติดตั้ง : Dropbear 2016.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Update to Dropbear 2016
 cd
 apt-get install zlib1g-dev;
@@ -460,6 +801,17 @@ ln /usr/local/sbin/dropbear /usr/sbin/dropbear
 cd; rm -rf dropbear-2016.74; rm -rf dropbear-2016.74.tar.bz2; rm -rf dropbear-2016.74.tar.bz
 service dropbear restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Vnstat Gui
+[√] กำลังเริ่มติดตั้ง : Vnstat Gui.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install Vnstat Gui
 cd /home/vps/public_html/
 wget https://dl.dropboxusercontent.com/s/1rzq3xbxg1mbwli/vnstat_php_frontend-1.5.1.tar.gz
@@ -475,10 +827,32 @@ sed -i 's/Internal/Internet/g' config.php
 sed -i '/SixXS IPv6/d' config.php
 cd
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...fail2ban
+[√] กำลังเริ่มติดตั้ง : fail2ban.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install fail2ban
 apt-get -y install fail2ban;
 service fail2ban restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Squid3
+[√] กำลังเริ่มติดตั้ง : Squid3.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install Squid3
 apt-get -y install squid3;
 cat > /etc/squid3/squid.conf <<-END
@@ -534,6 +908,17 @@ END
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Webmin
+[√] กำลังเริ่มติดตั้ง : Webmin.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Install Webmin
 cd
 wget "https://dl.dropboxusercontent.com/s/f5oukvrl6rxxizz/webmin_1.801_all.deb"
@@ -545,6 +930,17 @@ service webmin restart
 service vnstat restart
 apt-get -y --force-yes -f install libxml-parser-perl
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...IPtables
+[√] กำลังเริ่มติดตั้ง : IPtables.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Setting IPtables
 cat > /etc/iptables.up.rules <<-END
 *nat
@@ -604,10 +1000,32 @@ sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 sed -i $MYIP2 /etc/iptables.up.rules;
 iptables-restore < /etc/iptables.up.rules
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Script
+[√] กำลังเริ่มติดตั้ง : Script.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Download Script
 cd
 wget https://dl.dropboxusercontent.com/s/vcd7jdd7i2bg5bd/install-premiumscript.sh -O - -o /dev/null|sh
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Finalisasi
+[√] กำลังเริ่มติดตั้ง : Finalisasi.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Finalisasi
 apt-get -y autoremove;
 chown -R www-data:www-data /home/vps/public_html
@@ -628,9 +1046,31 @@ rm -f /usr/bin/IP
 rm /root/debian8.sh
 rm -f /root/debian8.sh
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...History
+[√] กำลังเริ่มติดตั้ง : History.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Clearing History
 history -c
 
+
+
+clear
+echo "
+----------------------------------------------
+[√] System : เฮียเบิร์ด.com 
+[√] Connect...Info
+[√] กำลังเริ่มติดตั้ง : Info.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Info
 clear
 echo "--------------------------------------------------------------------------------"
