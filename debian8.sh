@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# Check Root | www.fb.com/ceolnw
-if [[ "$USER" != 'root' ]]; then
-	echo "
-----------------------------------------------
-[√] คุณต้องพิมพ์คำสั่ง sudo su เพื่อใช้งานเป็น root
-----------------------------------------------
-"
-
 # Root Login | www.fb.com/ceolnw
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 service ssh restart
