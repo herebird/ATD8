@@ -39,7 +39,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Requirement..... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # UPDATE SYSTEM | www.fb.com/ceolnw
 if [ ! -e /usr/bin/curl ]; then
   apt-get -y update; apt-get -y upgrade; apt-get -y install curl;
@@ -55,7 +55,7 @@ echo "
 [√] กำลังเริ่มปิด : IPv6..... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # DISABLE IPV6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
@@ -70,7 +70,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : DNS IPv4..... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # ADD DNS SERVER IPV4 | www.fb.com/ceolnw
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
@@ -87,7 +87,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Wget Curl..... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL WGET AND CURL | www.fb.com/ceolnw
 apt-get update; apt-get -y install wget curl;
 
@@ -101,7 +101,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Time GMT +7.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET TIME GMT +7 | www.fb.com/ceolnw
 ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
@@ -115,7 +115,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Bangner SSH.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET BANNER SSH | www.fb.com/ceolnw
 echo "Banner /bannerssh" >> /etc/ssh/sshd_config
 cat > /bannerssh <<END0
@@ -133,7 +133,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Locale.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET LOCALE
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
@@ -149,7 +149,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Repo.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET REPO
 cat > /etc/apt/sources.list <<END2
 deb http://cdn.debian.net/debian wheezy main contrib non-free
@@ -168,7 +168,7 @@ echo "
 [√] กำลังเริ่มนำออก : Unsed.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # REMOVE UNUSE | www.fb.com/ceolnw
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
@@ -186,7 +186,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Update.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # UPDATE
 apt-get update; apt-get -y upgrade;
 
@@ -199,7 +199,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : WebServer.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL WEBSERVER | www.fb.com/ceolnw
 apt-get -y install nginx; apt-get -y install php5-fpm; apt-get -y install php5-cli;
 
@@ -212,7 +212,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Essential.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL ESSENTIAL PACKAGE | www.fb.com/ceolnw
 echo "mrtg mrtg/conf_mods boolean true" | debconf-set-selections
 apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter; apt-get -y install build-essential;
@@ -226,7 +226,7 @@ echo "
 [√] กำลังเริ่มปิด : Exim.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # DISABLE EXIM | www.fb.com/ceolnw
 service exim4 stop
 sysv-rc-conf exim4 off
@@ -240,7 +240,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Apt-file.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # UPDATE APT-FILE | www.fb.com/ceolnw
 apt-file update;
 
@@ -253,7 +253,7 @@ echo "
 [√] กำลังเริ่มตั้งค่า : Vnstat.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SETTING VNSTAT | www.fb.com/ceolnw
 vnstat -u -i eth0
 service vnstat restart
@@ -267,7 +267,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : ScreenFetch.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL SCREENFETCH | www.fb.com/ceolnw
 cd
 wget -O /usr/bin/screenfetch "https://dl.dropboxusercontent.com/s/ycyegwijkdekv4q/screenfetch"
@@ -284,7 +284,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : WebServer.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL WEBSERVER | www.fb.com/ceolnw
 cd
 rm /etc/nginx/sites-enabled/default
@@ -371,7 +371,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : OpenVPN.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL OPENVPN | www.fb.com/ceolnw
 apt-get -y install openvpn; apt-get -y install iptables; apt-get -y install openssl;
 cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
@@ -385,7 +385,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Easy-rsa.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL EASY-RSA | www.fb.com/ceolnw
 if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
 	wget --no-check-certificate -O ~/easy-rsa.tar.gz https://dl.dropboxusercontent.com/s/cqhoz85lxvczqr2/easy-rsa-2.2.2.tar.gz
@@ -407,7 +407,7 @@ echo "
 [√] กำลังเริ่มตั้งค่า : Really Error.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET REALLY ERROR | www.fb.com/ceolnw
 cp -u -p openssl-1.0.0.cnf openssl.cnf
 
@@ -421,7 +421,7 @@ echo "
 [√] กำลังเริ่มตั้งค่า : Replace Bits.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET REPLACEBITS | www.fb.com/ceolnw
 sed -i 's|export KEY_SIZE=1024|export KEY_SIZE=2048|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="TH"|' /etc/openvpn/easy-rsa/2.0/vars
@@ -444,7 +444,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Create a PKI.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # CREATE PKI | www.fb.com/ceolnw
 . /etc/openvpn/easy-rsa/2.0/vars
 . /etc/openvpn/easy-rsa/2.0/clean-all
@@ -459,7 +459,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Create a Certificate.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # CREATE CERTIFICATE | www.fb.com/ceolnw
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --initca $*
@@ -474,7 +474,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Create a Key Server.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # CREATE KEY SERVER | www.fb.com/ceolnw
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --server server
@@ -489,7 +489,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : KEY CN.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SETTING KEY CN | www.fb.com/ceolnw
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" client
@@ -504,7 +504,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : DH Params.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # DH PARAMS | www.fb.com/ceolnw
 . /etc/openvpn/easy-rsa/2.0/build-dh
 
@@ -518,7 +518,7 @@ echo "
 [√] กำลังเริ่มตั้งค่า : Server.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SETTING SERVER | www.fb.com/ceolnw
 cat > /etc/openvpn/server.conf <<-END
 port 1194
@@ -563,7 +563,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : OpenVPN.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # CREATE OPENVPN CONFIG | www.fb.com/ceolnw
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
@@ -625,7 +625,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : IPv4 Forward.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SET IPV4 FORWARD | www.fb.com/ceolnw
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
@@ -641,7 +641,7 @@ echo "
 [√] กำลังเริ่ม : Restart OpenVPN.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # RESTART OPENVPN | www.fb.com/ceolnw
 /etc/init.d/openvpn restart
 
@@ -655,7 +655,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : PPTP.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL PPTP | www.fb.com/ceolnw
 apt-get -y install pptpd;
 cat > /etc/ppp/pptpd-options <<END
@@ -692,7 +692,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : badvpn.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL BADVPN | www.fb.com/ceolnw
 wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/yj7gj6melefqiwc/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
@@ -712,7 +712,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : mrtg.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL MRTG | www.fb.com/ceolnw
 wget -O /etc/snmp/snmpd.conf "https://dl.dropboxusercontent.com/s/h43jmsru1i5prkf/snmpd.conf"
 wget -O /root/mrtg-mem.sh "https://dl.dropboxusercontent.com/s/xlm1ybd8miutqs6/mrtg-mem.sh"
@@ -745,7 +745,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Port Ssh.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SETTING PORT SSH | www.fb.com/ceolnw
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  90' /etc/ssh/sshd_config
@@ -762,7 +762,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : DropBear.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL DROPBEAR | www.fb.com/ceolnw
 apt-get -y install dropbear;
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
@@ -782,7 +782,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Dropbear 2016.... [ OK !! ]
 ----------------------------------------------
  "
- sleep 5
+ sleep 3
 # UPDATE TO DROPBEAR 2016 | www.fb.com/ceolnw
 cd
 apt-get install zlib1g-dev;
@@ -806,7 +806,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Vnstat Gui.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL VBSTAT GUI | www.fb.com/ceolnw
 cd /home/vps/public_html/
 wget https://dl.dropboxusercontent.com/s/1rzq3xbxg1mbwli/vnstat_php_frontend-1.5.1.tar.gz
@@ -832,7 +832,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : fail2ban.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL FAIL2BAN | www.fb.com/ceolnw
 apt-get -y install fail2ban;
 service fail2ban restart
@@ -847,7 +847,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Squid3.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL SQUID3 | www.fb.com/ceolnw
 apt-get -y install squid3;
 cat > /etc/squid3/squid.conf <<-END
@@ -913,7 +913,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Webmin.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # INSTALL WEBMIN | www.fb.com/ceolnw
 cd
 wget "https://dl.dropboxusercontent.com/s/f5oukvrl6rxxizz/webmin_1.801_all.deb"
@@ -935,7 +935,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : IPtables.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # SETTING IPTAPLES | www.fb.com/ceolnw
 cat > /etc/iptables.up.rules <<-END
 *nat
@@ -1005,7 +1005,7 @@ echo "
 [√] กำลังเริ่มติดตั้ง : Script.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # DOWNLOAD SCRIPT | www.fb.com/ceolnw
 cd
 wget https://dl.dropboxusercontent.com/s/vcd7jdd7i2bg5bd/install-premiumscript.sh -O - -o /dev/null|sh
@@ -1051,7 +1051,7 @@ echo "
 [√] กำลังเริ่มเคลีย : History.... [ OK !! ]
 ----------------------------------------------
  " | lolcat
- sleep 5
+ sleep 3
 # CLEARING HISTORY | www.fb.com/ceolnw
 history -c
 
