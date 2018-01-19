@@ -763,40 +763,15 @@ echo "
 ----------------------------------------------
  " | lolcat
  sleep 3
-# INSTALL DROPBEAR | www.fb.com/ceolnw
-apt-get -y install dropbear;
+# install dropbear
+apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 443 -p 80"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
 service ssh restart
 service dropbear restart
-
-
-
-clear
-echo "
-----------------------------------------------
-[√] Source : เฮียเบิร์ด.com
-[√] Connect...Dropbear 2016
-[√] กำลังเริ่มติดตั้ง : Dropbear 2016.... [ OK !! ]
-----------------------------------------------
- "
- sleep 3
-# UPDATE TO DROPBEAR 2016 | www.fb.com/ceolnw
-cd
-apt-get install zlib1g-dev;
-wget https://dl.dropboxusercontent.com/s/udwltlqcscfoxmv/dropbear-2016.74.tar.bz
-bzip2 -cd dropbear-2016.74.tar.bz2 | tar xvf -
-cd dropbear-2016.74
-./configure
-make && make install
-mv /usr/sbin/dropbear /usr/sbin/dropbear.old
-ln /usr/local/sbin/dropbear /usr/sbin/dropbear
-cd; rm -rf dropbear-2016.74; rm -rf dropbear-2016.74.tar.bz2; rm -rf dropbear-2016.74.tar.bz
-service dropbear restart
-
-
 
 clear
 echo "
