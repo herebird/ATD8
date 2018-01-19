@@ -563,9 +563,9 @@ cd /etc/openvpn/
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...OpenVPN Config
-[√] กำลังเริ่มติดตั้ง : OpenVPN Configr.... [ OK !! ]
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...OpenVPN
+[√] กำลังเริ่มติดตั้ง : OpenVPN.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
@@ -625,7 +625,7 @@ cd
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...IPv4 Forward
 [√] กำลังเริ่มติดตั้ง : IPv4 Forward.... [ OK !! ]
 ----------------------------------------------
@@ -641,9 +641,9 @@ sed -i 's|net.ipv4.ip_forward=0|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...Restart OpenVPN
-[√] กำลังเริ่มติดตั้ง : Restart OpenVPN.... [ OK !! ]
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...OpenVPN
+[√] กำลังเริ่ม : Restart OpenVPN.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
@@ -655,7 +655,7 @@ echo "
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...PPTP
 [√] กำลังเริ่มติดตั้ง : PPTP.... [ OK !! ]
 ----------------------------------------------
@@ -692,7 +692,7 @@ mkdir /var/lib/premium-script
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...badvpn
 [√] กำลังเริ่มติดตั้ง : badvpn.... [ OK !! ]
 ----------------------------------------------
@@ -712,7 +712,7 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...mrtg
 [√] กำลังเริ่มติดตั้ง : mrtg.... [ OK !! ]
 ----------------------------------------------
@@ -745,8 +745,8 @@ cd
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...Port Ssh
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...Ssh
 [√] กำลังเริ่มติดตั้ง : Port Ssh.... [ OK !! ]
 ----------------------------------------------
  "
@@ -762,7 +762,7 @@ service ssh restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...DropBear
 [√] กำลังเริ่มติดตั้ง : DropBear.... [ OK !! ]
 ----------------------------------------------
@@ -782,7 +782,7 @@ service dropbear restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Dropbear 2016
 [√] กำลังเริ่มติดตั้ง : Dropbear 2016.... [ OK !! ]
 ----------------------------------------------
@@ -806,7 +806,7 @@ service dropbear restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Vnstat Gui
 [√] กำลังเริ่มติดตั้ง : Vnstat Gui.... [ OK !! ]
 ----------------------------------------------
@@ -832,7 +832,7 @@ cd
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...fail2ban
 [√] กำลังเริ่มติดตั้ง : fail2ban.... [ OK !! ]
 ----------------------------------------------
@@ -847,7 +847,7 @@ service fail2ban restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Squid3
 [√] กำลังเริ่มติดตั้ง : Squid3.... [ OK !! ]
 ----------------------------------------------
@@ -913,7 +913,7 @@ service squid3 restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Webmin
 [√] กำลังเริ่มติดตั้ง : Webmin.... [ OK !! ]
 ----------------------------------------------
@@ -935,7 +935,7 @@ apt-get -y --force-yes -f install libxml-parser-perl
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...IPtables
 [√] กำลังเริ่มติดตั้ง : IPtables.... [ OK !! ]
 ----------------------------------------------
@@ -1005,7 +1005,7 @@ iptables-restore < /etc/iptables.up.rules
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Script
 [√] กำลังเริ่มติดตั้ง : Script.... [ OK !! ]
 ----------------------------------------------
@@ -1020,7 +1020,7 @@ wget https://dl.dropboxusercontent.com/s/vcd7jdd7i2bg5bd/install-premiumscript.s
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Finalisasi
 [√] กำลังเริ่มติดตั้ง : Finalisasi.... [ OK !! ]
 ----------------------------------------------
@@ -1051,9 +1051,9 @@ rm -f /root/debian8.sh
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...History
-[√] กำลังเริ่มติดตั้ง : History.... [ OK !! ]
+[√] กำลังเริ่มเคลีย : History.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
@@ -1065,7 +1065,7 @@ history -c
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...เสร็จสิ้นการติดตั้ง
 [√] กำลังเรียกข้อมูล : Info.... [ OK !! ]
 ----------------------------------------------
@@ -1091,23 +1091,23 @@ echo "   - BADVPN      : 7300"  | tee -a log-install.txt
 echo "   - NGINX       : 81"  | tee -a log-install.txt
 echo "   - PPTP VPN    : 1732"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Informasi Tools Dalam Server"  | tee -a log-install.txt
-echo "   - htop"  | tee -a log-install.txt
-echo "   - iftop"  | tee -a log-install.txt
-echo "   - mtr"  | tee -a log-install.txt
-echo "   - nethogs"  | tee -a log-install.txt
-echo "   - screenfetch"  | tee -a log-install.txt
+echo "ข้อมูลเครื่องมือในเซิร์ฟเวอร์"  | tee -a log-install.txt
+echo "   - HTOP"  | tee -a log-install.txt
+echo "   - IFTOP"  | tee -a log-install.txt
+echo "   - MTR"  | tee -a log-install.txt
+echo "   - NETHOGS"  | tee -a log-install.txt
+echo "   - SCREENFETCH"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Informasi Premium Script"  | tee -a log-install.txt
-echo "   Perintah untuk menampilkan Daftar perintah: menu"  | tee -a log-install.txt
+echo "ข้อมูลพรีเมี่ยมสคริปต์"  | tee -a log-install.txt
+echo "   คำสั่งเพื่อแสดงรายการคำสั่ง: MENU"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "   Penjelasan Script Dan Setup VPS"| tee -a log-install.txt
+echo "   คำอธิบายสคริปต์และการตั้งค่า VPS"| tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Informasi Penting"  | tee -a log-install.txt
+echo "Important Information"  | tee -a log-install.txt
 echo "   - Download Config OpenVPN : http://$MYIP:81/client.ovpn"  | tee -a log-install.txt
 echo "   - Webmin                  : http://$MYIP:10000/"  | tee -a log-install.txt
 echo "   - Vnstat                  : http://$MYIP:81/vnstat/"  | tee -a log-install.txt
 echo "   - MRTG                    : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
-echo "   - Log Instalasi           : cat /root/log-install.txt"  | tee -a log-install.txt
+echo "   - Log Install             : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "----------- สคริปออโต้ www.เฮียเบิร์ด.com ขอบคุณครับ------------"
