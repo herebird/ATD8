@@ -1125,7 +1125,7 @@ echo "
  sleep 5
 # INFO | www.fb.com/ceolnw
 clear
-echo "--------------------------------------------------------------------------------"
+echo "----------------------------------------------------------"
 echo ""  | tee -a log-install.txt
 echo "INFROMATION SERVER"  | tee -a log-install.txt
 echo "   - TIMEZONE    : Asia/Bangkok (GMT +7)"  | tee -a log-install.txt
@@ -1156,10 +1156,10 @@ echo ""  | tee -a log-install.txt
 echo "   คำอธิบายสคริปต์และการตั้งค่า VPS"| tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Important Information"  | tee -a log-install.txt
-echo "   - Download Config OpenVPN : http://$MYIP:81/client.ovpn"  | tee -a log-install.txt
-echo "   - Webmin                  : http://$MYIP:10000/"  | tee -a log-install.txt
-echo "   - Vnstat                  : http://$MYIP:81/vnstat/"  | tee -a log-install.txt
-echo "   - MRTG                    : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
-echo "   - Log Install             : cat /root/log-install.txt"  | tee -a log-install.txt
+echo "   - Download Config  : http://$MYIP:81/client.ovpn"  | tee -a log-install.txt
+echo "   - Webmin           : http://$MYIP:10000/"  | tee -a log-install.txt
+echo "   - Vnstat           : http://$MYIP:81/vnstat/"  | tee -a log-install.txt
+echo "   - MRTG             : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
+echo "   - Log Install      : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "----------- สคริปออโต้ www.เฮียเบิร์ด.com ขอบคุณครับ------------"
