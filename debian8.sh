@@ -16,20 +16,20 @@ cd
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com 
 [√] Connect...Setting vps
 [√] กำลังเริ่มติดตั้ง : vpsconfig..... [ OK !! ]
 ----------------------------------------------
  "
  sleep 10
-# GO TO BOXES
+# GO TO BOXES | www.fb.com/ceolnw
 apt-get install boxes
 
-# INSTALL RUBY
+# INSTALL RUBY | www.fb.com/ceolnw
 sudo apt-get install ruby
 sudo gem install lolcat
 
-# SETUP BASHRC
+# SETUP BASHRC | www.fb.com/ceolnw
 cd
 rm -rf /root/.bashrc
 wget -O /root/.bashrc $source/debian7/.bashrc
@@ -39,13 +39,13 @@ wget -O /root/.bashrc $source/debian7/.bashrc
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Requirement
 [√] กำลังเริ่มติดตั้ง : Requirement..... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# UPDATE SYSTEM
+# UPDATE SYSTEM | www.fb.com/ceolnw
 if [ ! -e /usr/bin/curl ]; then
   apt-get -y update; apt-get -y upgrade; apt-get -y install curl;
 fi
@@ -55,9 +55,9 @@ fi
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Disable IPv6
-[√] กำลังเริ่มปิดใช้งาน : IPv6..... [ OK !! ]
+[√] กำลังเริ่มปิด : IPv6..... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
@@ -70,13 +70,13 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...DNS Server IPv4
 [√] กำลังเริ่มติดตั้ง : DNS IPv4..... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# ADD DNS SERVER IPV4
+# ADD DNS SERVER IPV4 | www.fb.com/ceolnw
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 sed -i '$ i\echo "nameserver 8.8.8.8" > /etc/resolv.conf' /etc/rc.local
@@ -87,13 +87,13 @@ sed -i '$ i\echo "nameserver 8.8.4.4" >> /etc/resolv.conf' /etc/rc.local
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Wget Curl
 [√] กำลังเริ่มติดตั้ง : Wget Curl..... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL WGET AND CURL
+# INSTALL WGET AND CURL | www.fb.com/ceolnw
 apt-get update; apt-get -y install wget curl;
 
 
@@ -101,13 +101,13 @@ apt-get update; apt-get -y install wget curl;
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Time zone
 [√] กำลังเริ่มติดตั้ง : Time GMT +7.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SET TIME GMT +7
+# SET TIME GMT +7 | www.fb.com/ceolnw
 ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 
 
@@ -115,13 +115,13 @@ ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Bangner SSH
 [√] กำลังเริ่มติดตั้ง : Bangner SSH.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SET BANNER SSH
+# SET BANNER SSH | www.fb.com/ceolnw
 echo "Banner /bannerssh" >> /etc/ssh/sshd_config
 cat > /bannerssh <<END0
 
@@ -133,7 +133,7 @@ END0
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Locale
 [√] กำลังเริ่มติดตั้ง : Locale.... [ OK !! ]
 ----------------------------------------------
@@ -149,7 +149,7 @@ service ssh restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com 
 [√] Connect...Repo
 [√] กำลังเริ่มติดตั้ง : Repo.... [ OK !! ]
 ----------------------------------------------
@@ -168,13 +168,13 @@ cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Unused
-[√] กำลังเริ่มนำออก : apt-get.... [ OK !! ]
+[√] กำลังเริ่มนำออก : Unsed.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# REMOVE UNUSE
+# REMOVE UNUSE | www.fb.com/ceolnw
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
 apt-get -y --purge remove sendmail*;
@@ -186,9 +186,9 @@ apt-get -y remove sendmail*;
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Update
-[√] กำลังเริ่มนำออก : Update.... [ OK !! ]
+[√] กำลังเริ่มติดตั้ง : Update.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
@@ -199,26 +199,26 @@ apt-get update; apt-get -y upgrade;
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...WebServer
 [√] กำลังเริ่มติดตั้ง : WebServer.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL WEBSERVER
+# INSTALL WEBSERVER | www.fb.com/ceolnw
 apt-get -y install nginx; apt-get -y install php5-fpm; apt-get -y install php5-cli;
 
 
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Essential
 [√] กำลังเริ่มติดตั้ง : Essential.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL ESSENTIAL PACKAGE
+# INSTALL ESSENTIAL PACKAGE | www.fb.com/ceolnw
 echo "mrtg mrtg/conf_mods boolean true" | debconf-set-selections
 apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter; apt-get -y install build-essential;
 
@@ -226,13 +226,13 @@ apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-co
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Exim
 [√] กำลังเริ่มปิด : Exim.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# DISABLE EXIM
+# DISABLE EXIM | www.fb.com/ceolnw
 service exim4 stop
 sysv-rc-conf exim4 off
 
@@ -240,26 +240,26 @@ sysv-rc-conf exim4 off
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...apt-file
-[√] กำลังเริ่มติดตั้ง : apt-file.... [ OK !! ]
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...Apt-file
+[√] กำลังเริ่มติดตั้ง : Apt-file.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# UPDATE APT-FILE
+# UPDATE APT-FILE | www.fb.com/ceolnw
 apt-file update;
 
 
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Vnstat
 [√] กำลังเริ่มตั้งค่า : Vnstat.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SETTING VNSTAT
+# SETTING VNSTAT | www.fb.com/ceolnw
 vnstat -u -i eth0
 service vnstat restart
 
@@ -267,13 +267,13 @@ service vnstat restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...ScreenFetch
 [√] กำลังเริ่มติดตั้ง : ScreenFetch.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL SCREENFETCH
+# INSTALL SCREENFETCH | www.fb.com/ceolnw
 cd
 wget -O /usr/bin/screenfetch "https://dl.dropboxusercontent.com/s/ycyegwijkdekv4q/screenfetch"
 chmod +x /usr/bin/screenfetch
@@ -284,13 +284,13 @@ echo "screenfetch" >> .profile
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...WebServer
 [√] กำลังเริ่มติดตั้ง : WebServer.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL WEBSERVER
+# INSTALL WEBSERVER | www.fb.com/ceolnw
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
@@ -371,13 +371,13 @@ service nginx restart
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...OpenVPN
 [√] กำลังเริ่มติดตั้ง : OpenVPN.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL OPENVPN
+# INSTALL OPENVPN | www.fb.com/ceolnw
 apt-get -y install openvpn; apt-get -y install iptables; apt-get -y install openssl;
 cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
 
@@ -385,13 +385,13 @@ cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Easy-rsa
 [√] กำลังเริ่มติดตั้ง : Easy-rsa.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# INSTALL EASY-RSA
+# INSTALL EASY-RSA | www.fb.com/ceolnw
 if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
 	wget --no-check-certificate -O ~/easy-rsa.tar.gz https://dl.dropboxusercontent.com/s/cqhoz85lxvczqr2/easy-rsa-2.2.2.tar.gz
     tar xzf ~/easy-rsa.tar.gz -C ~/
@@ -407,13 +407,13 @@ cd /etc/openvpn/easy-rsa/2.0/
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Really Error
-[√] กำลังเริ่มติดตั้ง : Really Error.... [ OK !! ]
+[√] กำลังเริ่มตั้งค่า : Really Error.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SET REALLY ERROR
+# SET REALLY ERROR | www.fb.com/ceolnw
 cp -u -p openssl-1.0.0.cnf openssl.cnf
 
 
@@ -421,13 +421,13 @@ cp -u -p openssl-1.0.0.cnf openssl.cnf
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Replace Bits
-[√] กำลังเริ่มติดตั้ง : Replace Bits.... [ OK !! ]
+[√] กำลังเริ่มตั้งค่า : Replace Bits.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SET REPLACEBITS
+# SET REPLACEBITS | www.fb.com/ceolnw
 sed -i 's|export KEY_SIZE=1024|export KEY_SIZE=2048|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="TH"|' /etc/openvpn/easy-rsa/2.0/vars
 sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Thailand"|' /etc/openvpn/easy-rsa/2.0/vars
@@ -444,13 +444,13 @@ sed -i 's|export KEY_OU=changeme|export KEY_OU=BYVPN.NET|' /etc/openvpn/easy-rsa
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...Create a PKI
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...PKI
 [√] กำลังเริ่มติดตั้ง : Create a PKI.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# CREATE PKI
+# CREATE PKI | www.fb.com/ceolnw
 . /etc/openvpn/easy-rsa/2.0/vars
 . /etc/openvpn/easy-rsa/2.0/clean-all
 
@@ -459,13 +459,13 @@ echo "
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...Create a Certificate
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...Certificate
 [√] กำลังเริ่มติดตั้ง : Create a Certificate.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# CREATE CERTIFICATE
+# CREATE CERTIFICATE | www.fb.com/ceolnw
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --initca $*
 
@@ -474,13 +474,13 @@ export EASY_RSA="${EASY_RSA:-.}"
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
-[√] Connect...Create a Key Server
+[√] Source : เฮียเบิร์ด.com
+[√] Connect...Key Server
 [√] กำลังเริ่มติดตั้ง : Create a Key Server.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# CREATE KEY SERVER
+# CREATE KEY SERVER | www.fb.com/ceolnw
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" --server server
 
@@ -489,13 +489,13 @@ export EASY_RSA="${EASY_RSA:-.}"
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Setting KEY CN
-[√] กำลังเริ่มติดตั้ง : Setting KEY CN.... [ OK !! ]
+[√] กำลังเริ่มติดตั้ง : KEY CN.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SETTING KEY CN
+# SETTING KEY CN | www.fb.com/ceolnw
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" client
 
@@ -504,13 +504,13 @@ export EASY_RSA="${EASY_RSA:-.}"
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...DH Params
 [√] กำลังเริ่มติดตั้ง : DH Params.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# DH PARAMS
+# DH PARAMS | www.fb.com/ceolnw
 . /etc/openvpn/easy-rsa/2.0/build-dh
 
 
@@ -518,13 +518,13 @@ echo "
 clear
 echo "
 ----------------------------------------------
-[√] System : เฮียเบิร์ด.com 
+[√] Source : เฮียเบิร์ด.com
 [√] Connect...Setting Server
-[√] กำลังเริ่มติดตั้ง : Setting Server.... [ OK !! ]
+[√] กำลังเริ่มตั้งค่า : Server.... [ OK !! ]
 ----------------------------------------------
  "
  sleep 5
-# SETTING SERVER
+# SETTING SERVER | www.fb.com/ceolnw
 cat > /etc/openvpn/server.conf <<-END
 port 1194
 proto tcp
@@ -569,7 +569,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# CREATE OPENVPN CONFIG
+# CREATE OPENVPN CONFIG | www.fb.com/ceolnw
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
 ## [+] ยินดีต้อนรับเข้าสู่ WWW.เฮียเบิร์ด.COM เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
@@ -631,7 +631,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# SET IPV4 FORWARD
+# SET IPV4 FORWARD | www.fb.com/ceolnw
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 sed -i 's|net.ipv4.ip_forward=0|net.ipv4.ip_forward=1|' /etc/sysctl.conf
@@ -647,7 +647,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# RESTART OPENVPN
+# RESTART OPENVPN | www.fb.com/ceolnw
 /etc/init.d/openvpn restart
 
 
@@ -661,7 +661,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL PPTP
+# INSTALL PPTP | www.fb.com/ceolnw
 apt-get -y install pptpd;
 cat > /etc/ppp/pptpd-options <<END
 name pptpd
@@ -698,7 +698,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL BADVPN
+# INSTALL BADVPN | www.fb.com/ceolnw
 wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/yj7gj6melefqiwc/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
   wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/gqd1rjy1nw0yyd8/badvpn-udpgw64"
@@ -718,7 +718,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL MRTG
+# INSTALL MRTG | www.fb.com/ceolnw
 wget -O /etc/snmp/snmpd.conf "https://dl.dropboxusercontent.com/s/h43jmsru1i5prkf/snmpd.conf"
 wget -O /root/mrtg-mem.sh "https://dl.dropboxusercontent.com/s/xlm1ybd8miutqs6/mrtg-mem.sh"
 chmod +x /root/mrtg-mem.sh
@@ -751,7 +751,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# SETTING PORT SSH
+# SETTING PORT SSH | www.fb.com/ceolnw
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  90' /etc/ssh/sshd_config
 sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
@@ -768,7 +768,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL DROPBEAR
+# INSTALL DROPBEAR | www.fb.com/ceolnw
 apt-get -y install dropbear;
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
@@ -788,7 +788,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# UPDATE TO DROPBEAR 2016
+# UPDATE TO DROPBEAR 2016 | www.fb.com/ceolnw
 cd
 apt-get install zlib1g-dev;
 wget https://dl.dropboxusercontent.com/s/udwltlqcscfoxmv/dropbear-2016.74.tar.bz
@@ -812,7 +812,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL VBSTAT GUI
+# INSTALL VBSTAT GUI | www.fb.com/ceolnw
 cd /home/vps/public_html/
 wget https://dl.dropboxusercontent.com/s/1rzq3xbxg1mbwli/vnstat_php_frontend-1.5.1.tar.gz
 tar xf vnstat_php_frontend-1.5.1.tar.gz
@@ -838,7 +838,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL FAIL2BAN
+# INSTALL FAIL2BAN | www.fb.com/ceolnw
 apt-get -y install fail2ban;
 service fail2ban restart
 
@@ -853,7 +853,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL SQUID3
+# INSTALL SQUID3 | www.fb.com/ceolnw
 apt-get -y install squid3;
 cat > /etc/squid3/squid.conf <<-END
 ## [+] ยินดีต้อนรับเข้าสู่ WWW.เฮียเบิร์ด.COM เซิร์ฟเวอร์ มาตรฐาน ราคายุติธรรม
@@ -919,7 +919,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INSTALL WEBMIN
+# INSTALL WEBMIN | www.fb.com/ceolnw
 cd
 wget "https://dl.dropboxusercontent.com/s/f5oukvrl6rxxizz/webmin_1.801_all.deb"
 dpkg --install webmin_1.801_all.deb;
@@ -941,7 +941,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# SETTING IPTAPLES
+# SETTING IPTAPLES | www.fb.com/ceolnw
 cat > /etc/iptables.up.rules <<-END
 *nat
 :PREROUTING ACCEPT [0:0]
@@ -1011,7 +1011,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# DOWNLOAD SCRIPT
+# DOWNLOAD SCRIPT | www.fb.com/ceolnw
 cd
 wget https://dl.dropboxusercontent.com/s/vcd7jdd7i2bg5bd/install-premiumscript.sh -O - -o /dev/null|sh
 
@@ -1026,7 +1026,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# FINALISASI
+# FINALISASI | www.fb.com/ceolnw
 apt-get -y autoremove;
 chown -R www-data:www-data /home/vps/public_html
 service nginx restart
@@ -1057,7 +1057,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# CLEARING HISTORY
+# CLEARING HISTORY | www.fb.com/ceolnw
 history -c
 
 
@@ -1071,7 +1071,7 @@ echo "
 ----------------------------------------------
  "
  sleep 5
-# INFO
+# INFO | www.fb.com/ceolnw
 clear
 echo "--------------------------------------------------------------------------------"
 echo ""  | tee -a log-install.txt
