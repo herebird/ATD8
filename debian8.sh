@@ -881,26 +881,6 @@ sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
 
-
-clear
-echo "
-----------------------------------------------
-[√] Source : เฮียเบิร์ด.com
-[√] Connect...Webmin
-[√] กำลังเริ่มติดตั้ง : Webmin.... [ OK !! ]
-----------------------------------------------
- " | lolcat
- sleep 3
-# INSTALL WEBMIN | www.fb.com/ceolnw
-cd
-wget -O webmin-current.deb "https://raw.githubusercontent.com/oi10536/SSH-OpenVPN/master/API/webmin-current.deb"
-dpkg -i --force-all webmin-current.deb;
-apt-get -y -f install;
-rm /root/webmin-current.deb
-service webmin restart
-
-
-
 clear
 echo "
 ----------------------------------------------
