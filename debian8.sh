@@ -688,7 +688,8 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL PPTP | www.fb.com/ceolnw
-apt-get -y install pptpd;
+#install PPTP
+apt-get -y install pptpd
 cat > /etc/ppp/pptpd-options <<END
 name pptpd
 refuse-pap
@@ -703,10 +704,14 @@ nodefaultroute
 lock
 nobsdcomp
 END
-echo "option /etc/ppp/pptpd-options" > /etc/pptpd.conf
-echo "logwtmp" >> /etc/pptpd.conf
-echo "localip 10.1.0.1" >> /etc/pptpd.conf
-echo "remoteip 10.1.0.5-100" >> /etc/pptpd.conf
+
+cat > /etc/pptpd.conf <<END
+option /etc/ppp/pptpd-options
+logwtmp
+localip 10.1.0.1
+remoteip 10.1.0.5-100
+END
+
 cat >> /etc/ppp/ip-up <<END
 ifconfig ppp0 mtu 1400
 END
@@ -907,6 +912,17 @@ visible_hostname Proxy.HostingTermurah.net
 END
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
+
+
+# install webmin
+cd
+wget "http://script.hostingtermurah.net/repo/webmin_1.801_all.deb"
+dpkg --install webmin_1.801_all.deb;
+apt-get -y -f install;
+sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+rm /root/webmin_1.801_all.deb
+service webmin restart
+service vnstat restart
 
 
 clear
