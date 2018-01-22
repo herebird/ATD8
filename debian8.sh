@@ -425,25 +425,25 @@ apt-get -y install openvpn; apt-get -y install iptables; apt-get -y install open
 cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
 
 
-clear
-echo "
-----------------------------------------------
-[√] Source : เฮียเบิร์ด.com
-[√] Connect...Easy-rsa
-[√] กำลังเริ่มติดตั้ง : Easy-rsa.... [ OK !! ]
-----------------------------------------------
- " | lolcat
- sleep 3
+#clear
+#echo "
+#----------------------------------------------
+#[√] Source : เฮียเบิร์ด.com
+#[√] Connect...Easy-rsa
+#[√] กำลังเริ่มติดตั้ง : Easy-rsa.... [ OK !! ]
+#----------------------------------------------
+# " | lolcat
+# sleep 3
 # INSTALL EASY-RSA | www.fb.com/ceolnw
-if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
-	wget --no-check-certificate -O ~/easy-rsa.tar.gz https://dl.dropboxusercontent.com/s/cqhoz85lxvczqr2/easy-rsa-2.2.2.tar.gz
-    tar xzf ~/easy-rsa.tar.gz -C ~/
-    mkdir -p /etc/openvpn/easy-rsa/2.0/
-    cp ~/easy-rsa-2.2.2/easy-rsa/2.0/* /etc/openvpn/easy-rsa/2.0/
-    rm -rf ~/easy-rsa-2.2.2
-    rm -rf ~/easy-rsa.tar.gz
-fi
-cd /etc/openvpn/easy-rsa/2.0/
+#if [[ ! -d /etc/openvpn/easy-rsa/2.0/ ]]; then
+#	wget --no-check-certificate -O ~/easy-rsa.tar.gz https://dl.dropboxusercontent.com/s/cqhoz85lxvczqr2/easy-rsa-2.2.2.tar.gz
+#    tar xzf ~/easy-rsa.tar.gz -C ~/
+#    mkdir -p /etc/openvpn/easy-rsa/2.0/
+#    cp ~/easy-rsa-2.2.2/easy-rsa/2.0/* /etc/openvpn/easy-rsa/2.0/
+#    rm -rf ~/easy-rsa-2.2.2
+#    rm -rf ~/easy-rsa.tar.gz
+#fi
+#cd /etc/openvpn/easy-rsa/2.0/
 
 
 
