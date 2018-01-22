@@ -602,31 +602,30 @@ echo "
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
 client
-dev tun
 proto tcp
-sndbuf 0
-rcvbuf 0
+dev tun
+remote BYVPN.NET 9999 udp
 <connection>
-remote MOTH3R-FUCK3R 9999 udp
+remote $MYIP:1194@lvs.truehits.in.th 1194 tcp
 </connection>
 http-proxy-retry
-http-proxy 188.166.191.230 8080
+http-proxy $MYIP 8080
 resolv-retry infinite
-nobind
+pull
+comp-lzo
+ns-cert-type server
 persist-key
 persist-tun
-remote-cert-tls server
-cipher AES-256-CBC
-comp-lzo
-setenv opt block-outside-dns
-key-direction 1
-verb 3
+mute 2
+mute-replay-warnings
 auth-user-pass
-keepalive 10 20
-<connection>
-remote $MYIP@lvs.truehits.in.th
-</connection>
-float
+redirect-gateway def1
+script-security 2
+route 0.0.0.0 0.0.0.0
+route-method exe
+route-delay 2
+cipher AES-128-CBC
+verb 3
 END
 echo '<ca>' >> /home/vps/public_html/client.ovpn
 cat /etc/openvpn/ca.crt >> /home/vps/public_html/client.ovpn
