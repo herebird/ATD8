@@ -803,12 +803,21 @@ echo "
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 443 -p 80"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
-echo "/usr/sbin/nologin" >> /etc/shells
-service ssh restart
-service dropbear restar
-
+service dropbear restart
+#Upgrade to Dropbear 2016
+cd
+apt-get install zlib1g-dev
+wget http://script.hostingtermurah.net/repo/dropbear/dropbear-2016.74.tar.bz2
+bzip2 -cd dropbear-2016.74.tar.bz2 | tar xvf -
+cd dropbear-2016.74
+./configure
+make && make install
+mv /usr/sbin/dropbear /usr/sbin/dropbear.old
+ln /usr/local/sbin/dropbear /usr/sbin/dropbear
+cd && rm -rf dropbear-2016.74 && rm -rf dropbear-2016.74.tar.bz2
+service dropbear restart
 
 
 clear
@@ -821,13 +830,12 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL VBSTAT GUI | www.fb.com/ceolnw
+# install vnstat gui
 cd /home/vps/public_html/
-wget https://dl.dropboxusercontent.com/s/1rzq3xbxg1mbwli/vnstat_php_frontend-1.5.1.tar.gz
+wget http://script.hostingtermurah.net/repo/vnstat_php_frontend-1.5.1.tar.gz
 tar xf vnstat_php_frontend-1.5.1.tar.gz
 rm vnstat_php_frontend-1.5.1.tar.gz
 mv vnstat_php_frontend-1.5.1 vnstat
-rm /home/vps/public_html/vnstat/index.php
-wget -O /home/vps/public_html/vnstat/index.php "https://dl.dropboxusercontent.com/s/0kj4lg2yuo90qmu/vnstat"
 cd vnstat
 sed -i "s/\$iface_list = array('eth0', 'sixxs');/\$iface_list = array('eth0');/g" config.php
 sed -i "s/\$language = 'nl';/\$language = 'en';/g" config.php
@@ -847,7 +855,8 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL FAIL2BAN | www.fb.com/ceolnw
-apt-get -y install fail2ban;
+# install fail2ban
+apt-get -y install fail2ban
 service fail2ban restart
 
 
@@ -862,10 +871,9 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL SQUID3 | www.fb.com/ceolnw
-cd
+# install squid3
 apt-get -y install squid3
-cat > /etc/squid3/squid.conf <<END
-acl manager proto cache_object
+cat > /etc/squid3/squid.conf <<-END
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 acl SSL_ports port 443
@@ -880,21 +888,25 @@ acl Safe_ports port 488
 acl Safe_ports port 591
 acl Safe_ports port 777
 acl CONNECT method CONNECT
-acl SSH dst xxxxxxxxx-xxxxxxxxx/255.255.255.255
+acl SSH dst xxxxxxxxx-xxxxxxxxx/32
 http_access allow SSH
 http_access allow manager localhost
 http_access deny manager
 http_access allow localhost
 http_access deny all
 http_port 8080
+http_port 8000
+http_port 80
+http_port 3128
 coredump_dir /var/spool/squid3
 refresh_pattern ^ftp: 1440 20% 10080
 refresh_pattern ^gopher: 1440 0% 1440
 refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
 refresh_pattern . 0 20% 4320
-visible_hostname openextra.net
+visible_hostname Proxy.HostingTermurah.net
 END
 sed -i $MYIP2 /etc/squid3/squid.conf;
+service squid3 restart
 
 
 clear
