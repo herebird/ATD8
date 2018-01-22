@@ -124,23 +124,6 @@ clear
 echo "
 ----------------------------------------------
 [√] Source : เฮียเบิร์ด.com
-[√] Connect...DNS Server IPv4
-[√] กำลังเริ่มติดตั้ง : DNS IPv4..... [ OK !! ]
-----------------------------------------------
- " | lolcat
- sleep 3
-# ADD DNS SERVER IPV4 | www.fb.com/ceolnw
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-echo "nameserver 8.8.4.4" >> /etc/resolv.conf
-sed -i '$ i\echo "nameserver 8.8.8.8" > /etc/resolv.conf' /etc/rc.local
-sed -i '$ i\echo "nameserver 8.8.4.4" >> /etc/resolv.conf' /etc/rc.local
-
-
-
-clear
-echo "
-----------------------------------------------
-[√] Source : เฮียเบิร์ด.com
 [√] Connect...Wget Curl
 [√] กำลังเริ่มติดตั้ง : Wget Curl..... [ OK !! ]
 ----------------------------------------------
@@ -194,7 +177,6 @@ echo "
  sleep 3
 # SET LOCALE
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
-sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 service ssh restart
 
 
@@ -209,13 +191,17 @@ echo "
  " | lolcat
  sleep 3
 # SET REPO
-cat > /etc/apt/sources.list <<END2
+cat > /etc/apt/sources.list <<END
 deb http://cdn.debian.net/debian wheezy main contrib non-free
 deb http://security.debian.org/ wheezy/updates main contrib non-free
 deb http://packages.dotdeb.org wheezy all
-END2
-wget "http://www.dotdeb.org/dotdeb.gpg"
+deb http://download.webmin.com/download/repository sarge contrib
+deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
+END
+wget "http://27.254.81.20/~com/debian7/Config/dotdeb.gpg"
+wget "http://27.254.81.20/~com/debian7/Config/jcameron-key.asc"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
+cat jcameron-key.asc | apt-key add -;rm jcameron-key.asc
 
 
 clear
@@ -313,6 +299,7 @@ echo "
  " | lolcat
  sleep 3
 # SETTING VNSTAT | www.fb.com/ceolnw
+apt-get -y install vnstat
 vnstat -u -i eth0
 service vnstat restart
 
@@ -344,26 +331,23 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL WEBSERVER | www.fb.com/ceolnw
+# Install Webserver
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 cat > /etc/nginx/nginx.conf <<END3
 user www-data;
-
 worker_processes 1;
 pid /var/run/nginx.pid;
-
 events {
 	multi_accept on;
   worker_connections 1024;
 }
-
 http {
 	gzip on;
 	gzip_vary on;
 	gzip_comp_level 5;
 	gzip_types    text/plain application/x-javascript text/xml text/css;
-
 	autoindex on;
   sendfile on;
   tcp_nopush on;
@@ -378,35 +362,30 @@ http {
   client_max_body_size 32M;
 	client_header_buffer_size 8m;
 	large_client_header_buffers 8 8m;
-
 	fastcgi_buffer_size 8m;
 	fastcgi_buffers 8 8m;
-
 	fastcgi_read_timeout 600;
-
   include /etc/nginx/conf.d/*.conf;
 }
 END3
 mkdir -p /home/vps/public_html
-wget -O /home/vps/public_html/index.html "https://dl.dropboxusercontent.com/s/rnlmnk0grb6p37s/index"
-echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
+echo "<pre>Script by : Here Bird lnwshop | Donate at TrueMoney Wallet 097-026-7262</pre>" > /home/vps/public_html/index.html
+echo "<?phpinfo(); ?>" > /home/vps/public_html/info.php
 args='$args'
 uri='$uri'
 document_root='$document_root'
 fastcgi_script_name='$fastcgi_script_name'
 cat > /etc/nginx/conf.d/vps.conf <<END4
 server {
-  listen       81;
+  listen       85;
   server_name  127.0.0.1 localhost;
   access_log /var/log/nginx/vps-access.log;
   error_log /var/log/nginx/vps-error.log error;
   root   /home/vps/public_html;
-
   location / {
     index  index.html index.htm index.php;
     try_files $uri $uri/ /index.php?$args;
   }
-
   location ~ \.php$ {
     include /etc/nginx/fastcgi_params;
     fastcgi_pass  127.0.0.1:9000;
@@ -414,11 +393,8 @@ server {
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
   }
 }
-
 END4
-sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
-service php5-fpm restart
-service nginx restart
+/etc/init.d/nginx restart
 
 
 clear
@@ -873,12 +849,12 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL SQUID3 | www.fb.com/ceolnw
-apt-get -y install squid3;
-cat > /etc/squid3/squid.conf <<-END
+cd
+apt-get -y install squid3
+cat > /etc/squid3/squid.conf <<END
 acl manager proto cache_object
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
-acl SSH dst IP-Server-IP-Server/32
 acl SSL_ports port 443
 acl Safe_ports port 80
 acl Safe_ports port 21
@@ -891,24 +867,21 @@ acl Safe_ports port 488
 acl Safe_ports port 591
 acl Safe_ports port 777
 acl CONNECT method CONNECT
+acl SSH dst xxxxxxxxx-xxxxxxxxx/255.255.255.255
 http_access allow SSH
 http_access allow manager localhost
 http_access deny manager
 http_access allow localhost
 http_access deny all
-http_port 80
-http_port 3128
-http_port 8000
 http_port 8080
 coredump_dir /var/spool/squid3
 refresh_pattern ^ftp: 1440 20% 10080
 refresh_pattern ^gopher: 1440 0% 1440
 refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
 refresh_pattern . 0 20% 4320
-visible_hostname google.com
+visible_hostname openextra.net
 END
 sed -i $MYIP2 /etc/squid3/squid.conf;
-service squid3 restart
 
 
 clear
