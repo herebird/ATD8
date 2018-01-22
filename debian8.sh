@@ -1099,3 +1099,5 @@ echo "   - MRTG             : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
 echo "   - Log Install      : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "----------- สคริปออโต้ www.เฮียเบิร์ด.com ขอบคุณครับ------------"
+cd
+rm -f /root/debian8.sh
