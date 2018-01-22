@@ -629,15 +629,15 @@ sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
 # Install Webmin
-cd
-wget "https://dl.dropboxusercontent.com/s/f5oukvrl6rxxizz/webmin_1.801_all.deb"
-dpkg --install webmin_1.801_all.deb;
-apt-get -y -f install;
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-rm /root/webmin_1.801_all.deb
-service webmin restart
-service vnstat restart
-apt-get -y --force-yes -f install libxml-parser-perl
+#cd
+#wget "https://dl.dropboxusercontent.com/s/f5oukvrl6rxxizz/webmin_1.801_all.deb"
+#dpkg --install webmin_1.801_all.deb;
+#apt-get -y -f install;
+#sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+#rm /root/webmin_1.801_all.deb
+#service webmin restart
+#service vnstat restart
+#apt-get -y --force-yes -f install libxml-parser-perl
 
 # Setting IPtables
 cat > /etc/iptables.up.rules <<-END
