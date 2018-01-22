@@ -80,7 +80,7 @@ echo " เด้งไปเลยเฟสนี้แน่นอน : www.fac
 echo ""
 echo ""
 rm /usr/bin/pass
-rm debian7.sh
+rm d8x64.sh
 exit
 fi
 clear
