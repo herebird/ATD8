@@ -471,17 +471,14 @@ echo "
  " | lolcat
  sleep 3
 # SET REPLACEBITS | www.fb.com/ceolnw
-sed -i 's|export KEY_SIZE=1024|export KEY_SIZE=2048|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="TH"|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Thailand"|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="FB Tae.TaRuMa"|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="WwW.BYVPN.NeT"|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="Tae.TaRuMa@Gmail.com"|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_EMAIL=mail@host.domain|export KEY_EMAIL=Tae.TaRuMa@Gmail.com|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_CN=changeme|export KEY_CN="BYVPN.NET"|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_NAME=changeme|export KEY_NAME=BYVPN.NET|' /etc/openvpn/easy-rsa/2.0/vars
-sed -i 's|export KEY_OU=changeme|export KEY_OU=BYVPN.NET|' /etc/openvpn/easy-rsa/2.0/vars
-
+sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="ID"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Jawa Barat"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Bandung"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="HostingTermurah.net"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="sales@hostingtermurah.net"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="HostingTermurah.net"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="server"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_OU=changeme|export KEY_OU=HostingTermurah|' /etc/openvpn/easy-rsa/vars
 
 
 clear
@@ -494,8 +491,11 @@ echo "
  " | lolcat
  sleep 3
 # CREATE PKI | www.fb.com/ceolnw
-. /etc/openvpn/easy-rsa/2.0/vars
-. /etc/openvpn/easy-rsa/2.0/clean-all
+cd /etc/openvpn/easy-rsa
+. ./vars
+./clean-all
+export EASY_RSA="${EASY_RSA:-.}"
+"$EASY_RSA/pkitool" --initca $*
 
 
 
@@ -539,8 +539,14 @@ echo "
  " | lolcat
  sleep 3
 # SETTING KEY CN | www.fb.com/ceolnw
+# seting KEY CN
 export EASY_RSA="${EASY_RSA:-.}"
 "$EASY_RSA/pkitool" client
+cd
+#cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn
+cp /etc/openvpn/easy-rsa/keys/server.crt /etc/openvpn/server.crt
+cp /etc/openvpn/easy-rsa/keys/server.key /etc/openvpn/server.key
+cp /etc/openvpn/easy-rsa/keys/ca.crt /etc/openvpn/ca.crt
 
 
 
@@ -554,7 +560,7 @@ echo "
  " | lolcat
  sleep 3
 # DH PARAMS | www.fb.com/ceolnw
-. /etc/openvpn/easy-rsa/2.0/build-dh
+openssl dhparam -out /etc/openvpn/dh2048.pem 2048
 
 
 
@@ -568,39 +574,39 @@ echo "
  " | lolcat
  sleep 3
 # SETTING SERVER | www.fb.com/ceolnw
+# Setting Server
 cat > /etc/openvpn/server.conf <<-END
 port 1194
 proto tcp
 dev tun
-tun-mtu 1500
-tun-mtu-extra 32
-mssfix 1450
-ca /etc/openvpn/ca.crt
-cert /etc/openvpn/server.crt
-key /etc/openvpn/server.key
-dh /etc/openvpn/dh2048.pem
-plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
+ca ca.crt
+cert server.crt
+key server.key
+dh dh2048.pem
 client-cert-not-required
 username-as-common-name
-server 10.8.0.0 255.255.255.0
+plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
+server 192.168.100.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
-push "redirect-gateway def1"
+push "redirect-gateway def1 bypass-dhcp"
 push "dhcp-option DNS 8.8.8.8"
 push "dhcp-option DNS 8.8.4.4"
 push "route-method exe"
 push "route-delay 2"
-keepalive 5 30
-cipher AES-128-CBC
+duplicate-cn
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
-status server-vpn.log
+status openvpn-status.log
+log         openvpn.log
 verb 3
+cipher AES-128-CBC
 END
-cd /etc/openvpn/easy-rsa/2.0/keys
-cp ca.crt ca.key dh2048.pem server.crt server.key /etc/openvpn
-cd /etc/openvpn/
-
 
 
 clear
@@ -615,21 +621,24 @@ echo "
 # CREATE OPENVPN CONFIG | www.fb.com/ceolnw
 mkdir -p /home/vps/public_html
 cat > /home/vps/public_html/client.ovpn <<-END
+
+
+# OpenVPN Configuration Dibuat Oleh HostingTermurah.net
+# (Official Partner VPS-Murah.net)
 client
-proto tcp
 dev tun
-remote BYVPN.NET 9999 udp
-<connection>
-remote $MYIP:1194@lvs.truehits.in.th 1194 tcp
-</connection>
-http-proxy-retry
-http-proxy $MYIP 8080
-resolv-retry infinite
-pull
-comp-lzo
-ns-cert-type server
+proto tcp
 persist-key
 persist-tun
+dev tun
+pull
+resolv-retry infinite
+nobind
+user nobody
+group nogroup
+comp-lzo
+ns-cert-type server
+verb 3
 mute 2
 mute-replay-warnings
 auth-user-pass
@@ -638,14 +647,41 @@ script-security 2
 route 0.0.0.0 0.0.0.0
 route-method exe
 route-delay 2
+remote $MYIP 1194
 cipher AES-128-CBC
-verb 3
 END
 echo '<ca>' >> /home/vps/public_html/client.ovpn
 cat /etc/openvpn/ca.crt >> /home/vps/public_html/client.ovpn
 echo '</ca>' >> /home/vps/public_html/client.ovpn
+cd /home/vps/public_html/
+tar -czf /home/vps/public_html/openvpn.tar.gz client.ovpn
+tar -czf /home/vps/public_html/client.tar.gz client.ovpn
 cd
 
+# Restart openvpn
+/etc/init.d/openvpn restart
+service openvpn start
+service openvpn status
+
+#Setting USW
+apt-get install ufw
+ufw allow ssh
+ufw allow 1194/tcp
+sed -i 's|DEFAULT_INPUT_POLICY="DROP"|DEFAULT_INPUT_POLICY="ACCEPT"|' /etc/default/ufw
+sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|' /etc/default/ufw
+cat > /etc/ufw/before.rules <<-END
+# START OPENVPN RULES
+# NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+# Allow traffic from OpenVPN client to eth0
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+COMMIT
+# END OPENVPN RULES
+END
+ufw enable
+ufw status
+ufw disable
 
 
 clear
@@ -660,7 +696,6 @@ echo "
 # SET IPV4 FORWARD | www.fb.com/ceolnw
 echo 1 > /proc/sys/net/ipv4/ip_forward
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
-sed -i 's|net.ipv4.ip_forward=0|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 
 
 
@@ -730,9 +765,10 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL BADVPN | www.fb.com/ceolnw
-wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/yj7gj6melefqiwc/badvpn-udpgw"
+# install badvpn
+wget -O /usr/bin/badvpn-udpgw "http://script.hostingtermurah.net/repo/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://dl.dropboxusercontent.com/s/gqd1rjy1nw0yyd8/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "http://script.hostingtermurah.net/repo/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -928,58 +964,32 @@ echo "
  " | lolcat
  sleep 3
 # SETTING IPTAPLES | www.fb.com/ceolnw
+#Setting IPtables
 cat > /etc/iptables.up.rules <<-END
+*filter
+:FORWARD ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A FORWARD -i eth0 -o ppp0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i ppp0 -o eth0 -j ACCEPT
+-A OUTPUT -d 23.66.241.170 -j DROP
+-A OUTPUT -d 23.66.255.37 -j DROP
+-A OUTPUT -d 23.66.255.232 -j DROP
+-A OUTPUT -d 23.66.240.200 -j DROP
+-A OUTPUT -d 128.199.213.5 -j DROP
+-A OUTPUT -d 128.199.149.194 -j DROP
+-A OUTPUT -d 128.199.196.170 -j DROP
+-A OUTPUT -d 103.52.146.66 -j DROP
+-A OUTPUT -d 5.189.172.204 -j DROP
+COMMIT
+
 *nat
 :PREROUTING ACCEPT [0:0]
-:POSTROUTING ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
--A POSTROUTING -j SNAT --to-source IP-Server
-COMMIT
-
-*filter
-:INPUT ACCEPT [19406:27313311]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [9393:434129]
-:fail2ban-ssh - [0:0]
--A INPUT -p tcp -m multiport --dports 22 -j fail2ban-ssh
--A INPUT -p ICMP --icmp-type 8 -j ACCEPT
--A INPUT -p tcp -m tcp --dport 53 -j ACCEPT
--A INPUT -p tcp --dport 22  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 80  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 81  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 80  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 80  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 143  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 109  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 110  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 443  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 1194  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 1194  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 1732  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 1732  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 3128  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 3128  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 7300  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 7300  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 8000  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 8000  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 8080  -m state --state NEW -j ACCEPT
--A INPUT -p udp --dport 8080  -m state --state NEW -j ACCEPT
--A INPUT -p tcp --dport 10000  -m state --state NEW -j ACCEPT
--A fail2ban-ssh -j RETURN
-COMMIT
-
-*raw
-:PREROUTING ACCEPT [158575:227800758]
-:OUTPUT ACCEPT [46145:2312668]
-COMMIT
-
-*mangle
-:PREROUTING ACCEPT [158575:227800758]
-:INPUT ACCEPT [158575:227800758]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [46145:2312668]
-:POSTROUTING ACCEPT [46145:2312668]
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -o eth0 -j MASQUERADE
+-A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
+-A POSTROUTING -s 10.1.0.0/24 -o eth0 -j MASQUERADE
 COMMIT
 END
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
@@ -1013,10 +1023,11 @@ echo "
  " | lolcat
  sleep 5
 # FINALISASI | www.fb.com/ceolnw
-apt-get -y autoremove;
+# finalisasi
+apt-get -y autoremove
 chown -R www-data:www-data /home/vps/public_html
-service nginx restart
-service php5-fpm restart
+service nginx start
+service php5-fpm start
 service vnstat restart
 service openvpn restart
 service snmpd restart
@@ -1027,6 +1038,10 @@ service squid3 restart
 service webmin restart
 service pptpd restart
 sysv-rc-conf rc.local on
+
+#clearing history
+history -c
+
 rm /usr/bin/IP
 rm -f /usr/bin/IP
 rm /root/debian8.sh
