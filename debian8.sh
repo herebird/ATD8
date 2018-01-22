@@ -118,7 +118,11 @@ echo "
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
-
+#Add DNS Server ipv4
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+sed -i '$ i\echo "nameserver 8.8.8.8" > /etc/resolv.conf' /etc/rc.local
+sed -i '$ i\echo "nameserver 8.8.4.4" >> /etc/resolv.conf' /etc/rc.local
 
 clear
 echo "
@@ -190,18 +194,16 @@ echo "
 ----------------------------------------------
  " | lolcat
  sleep 3
-# SET REPO
-cat > /etc/apt/sources.list <<END
-deb http://cdn.debian.net/debian wheezy main contrib non-free
-deb http://security.debian.org/ wheezy/updates main contrib non-free
-deb http://packages.dotdeb.org wheezy all
-deb http://download.webmin.com/download/repository sarge contrib
-deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
-END
-wget "http://27.254.81.20/~com/debian7/Config/dotdeb.gpg"
-wget "http://27.254.81.20/~com/debian7/Config/jcameron-key.asc"
+# set repo
+cat > /etc/apt/sources.list <<END2
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+deb http://http.us.debian.org/debian jessie main contrib non-free
+deb http://packages.dotdeb.org jessie all
+deb-src http://packages.dotdeb.org jessie all
+END2
+wget "http://www.dotdeb.org/dotdeb.gpg"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
-cat jcameron-key.asc | apt-key add -;rm jcameron-key.asc
 
 
 clear
@@ -213,13 +215,13 @@ echo "
 ----------------------------------------------
  " | lolcat
  sleep 3
-# REMOVE UNUSE | www.fb.com/ceolnw
+# remove unused
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
 apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
-apt-get -y purge sendmail*;
-apt-get -y remove sendmail*;
+apt-get -y purge sendmail*
+apt-get -y remove sendmail*
 
 
 clear
@@ -245,7 +247,7 @@ echo "
  " | lolcat
  sleep 3
 # INSTALL WEBSERVER | www.fb.com/ceolnw
-apt-get -y install nginx; apt-get -y install php5-fpm; apt-get -y install php5-cli;
+apt-get -y install nginx php5-fpm php5-cli
 
 
 clear
@@ -259,7 +261,9 @@ echo "
  sleep 3
 # INSTALL ESSENTIAL PACKAGE | www.fb.com/ceolnw
 echo "mrtg mrtg/conf_mods boolean true" | debconf-set-selections
-apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter; apt-get -y install build-essential;
+apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter
+apt-get -y install build-essential
+apt-get -y install libio-pty-perl libauthen-pam-perl apt-show-versions
 
 
 clear
@@ -299,7 +303,6 @@ echo "
  " | lolcat
  sleep 3
 # SETTING VNSTAT | www.fb.com/ceolnw
-apt-get -y install vnstat
 vnstat -u -i eth0
 service vnstat restart
 
@@ -315,7 +318,7 @@ echo "
  sleep 3
 # INSTALL SCREENFETCH | www.fb.com/ceolnw
 cd
-wget -O /usr/bin/screenfetch "https://dl.dropboxusercontent.com/s/ycyegwijkdekv4q/screenfetch"
+wget -O /usr/bin/screenfetch "http://script.hostingtermurah.net/repo/screenfetch"
 chmod +x /usr/bin/screenfetch
 echo "clear" >> .profile
 echo "screenfetch" >> .profile
@@ -330,24 +333,27 @@ echo "
 ----------------------------------------------
  " | lolcat
  sleep 3
-# INSTALL WEBSERVER | www.fb.com/ceolnw
-# Install Webserver
+# install webserver
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 cat > /etc/nginx/nginx.conf <<END3
 user www-data;
+
 worker_processes 1;
 pid /var/run/nginx.pid;
+
 events {
 	multi_accept on;
   worker_connections 1024;
 }
+
 http {
 	gzip on;
 	gzip_vary on;
 	gzip_comp_level 5;
 	gzip_types    text/plain application/x-javascript text/xml text/css;
+
 	autoindex on;
   sendfile on;
   tcp_nopush on;
@@ -362,15 +368,18 @@ http {
   client_max_body_size 32M;
 	client_header_buffer_size 8m;
 	large_client_header_buffers 8 8m;
+
 	fastcgi_buffer_size 8m;
 	fastcgi_buffers 8 8m;
+
 	fastcgi_read_timeout 600;
+
   include /etc/nginx/conf.d/*.conf;
 }
 END3
 mkdir -p /home/vps/public_html
-echo "<pre>Script by : Here Bird lnwshop | Donate at TrueMoney Wallet 097-026-7262</pre>" > /home/vps/public_html/index.html
-echo "<?phpinfo(); ?>" > /home/vps/public_html/info.php
+wget -O /home/vps/public_html/index.html "http://script.hostingtermurah.net/repo/index.html"
+echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 args='$args'
 uri='$uri'
 document_root='$document_root'
@@ -382,10 +391,12 @@ server {
   access_log /var/log/nginx/vps-access.log;
   error_log /var/log/nginx/vps-error.log error;
   root   /home/vps/public_html;
+
   location / {
     index  index.html index.htm index.php;
     try_files $uri $uri/ /index.php?$args;
   }
+
   location ~ \.php$ {
     include /etc/nginx/fastcgi_params;
     fastcgi_pass  127.0.0.1:9000;
@@ -393,8 +404,11 @@ server {
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
   }
 }
+
 END4
-/etc/init.d/nginx restart
+sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
+service php5-fpm restart
+service nginx restart
 
 
 clear
@@ -768,7 +782,7 @@ echo "
 ----------------------------------------------
  " | lolcat
  sleep 3
-# SETTING PORT SSH | www.fb.com/ceolnw
+# setting port ssh
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  90' /etc/ssh/sshd_config
 sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
