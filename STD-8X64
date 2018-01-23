@@ -30,7 +30,7 @@ if [[ $ether = "" ]]; then
 fi
 
 #source file
-	source="https://goo.gl/yTmQPm"
+	source="ocspanel.info"
 
 # go to root
 cd
@@ -69,7 +69,7 @@ clear
 	echo -e "\e[032;1m ( ใส่รหัสผ่านติดตั้ง... )"
 	echo ""
 read -p "๏๏๏โปรดใส่รหัสสำหรับติดตั้งสคลิปนี้.. : " passwds
-wget -q -O /usr/bin/pass http://27.254.81.20/~com/pass.txt
+wget -q -O /usr/bin/pass $source/config.txt
 if ! grep -w -q $passwds /usr/bin/pass; then
 clear
 echo ""
