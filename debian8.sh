@@ -154,15 +154,15 @@ wget -O /etc/rc.local "https://raw.githubusercontent.com/khungphat84/noname/mast
 #sed -i "s/ipserver/$myip/g" /etc/iptables.up.rules
 #iptables-restore < /etc/iptables.up.rules
 # nginx
-apt-get -y install nginx php5 php5-fpm php5-cli php5-mysql php5-mcrypt
+apt-get -y install nginx php-fpm php-mcrypt php-cli libexpat1-dev libxml-parser-perl
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/lnwshop/SCRIPT-FULL/master/API/nginx.conf"
+wget -O /etc/php/7.0/fpm/pool.d/www.conf "https://raw.githubusercontent.com/khungphat84/noname/master/www.conf"
 mkdir -p /home/vps/public_html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/lnwshop/SCRIPT-FULL/master/API/vps.conf"
-sed -i 's/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php5/fpm/php.ini
-sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
-sed -i $MYPORT /etc/nginx/conf.d/vps.conf;
+echo "<pre>Setup by inject69 | telegram @AnonymousVpn8 | website AnonymousVpn8.tk</pre>" > /home/vps/public_html/index.php
+echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
+wget -O /etc/nginx/conf.d/vps.conf "http://autoscriptnobita.tk/rendum/vps.conf"
+sed -i 's/listen = \/var\/run\/php7.0-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.0/fpm/pool.d/www.conf
 useradd -m vps && mkdir -p /home/vps/public_html
 rm /home/vps/public_html/index.html && echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
 chown -R www-data:www-data /home/vps/public_html && chmod -R g+rw /home/vps/public_html
