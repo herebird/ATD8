@@ -1,72 +1,4 @@
 #!/bin/bash
-
-if [ $USER != 'root' ]; then
-	echo "Sorry, for run the script please using root user"
-	exit
-fi
-
-# check OS
-export DEBIAN_FRONTEND=noninteractive
-OS=`uname -m`;
-MYIP=$(wget -qO- ipv4.icanhazip.com);
-MYIP2="s/xxxxxxxxx/$MYIP/g";
-
-#source file
-	source="https://goo.gl/yTmQPm"
-
-# go to root
-cd
-
-#password
-clear
- echo ""
-          echo -e "\e[031;1m     
-                         
-                =============== OS-32 & 64-bit ================
-                ♦                                             ♦
-                ♦     AUTOSCRIPT CREATED BY เฮียเบิร์ด แงะตลอด   ♦
-                ♦       -----------About Us------------       ♦ 
-                ♦            Telp : 097-026-7262              ♦
-                ♦         { VPN / SSH / OCS PANEL }           ♦ 
-                ♦       http://facebook.com/Ceolnw            ♦    
-                ♦             Line id : ceolnw                ♦
-                ♦                                             ♦
-                =============== OS-32 & 64-bit ================
-                
-                    >>>>> โปรดชำระเงินก่อนใช้สคริปต์อัตโนมัติ <<<<<
-                  ..........................................
-                  .         ราคา: 50 บาท = 1IP             .
-                  .        ***********************         .
-                  .        True Wallet Account             .
-                  .        =======================         .
-                  .        Phone : 097-026-7262            .
-                  .        Name  : HERE BIRD LNWSHOP       .
-                  ..........................................   
-                                      
-                           Thank You For Choice Us"
-			
-	echo ""
-	echo -e "\e[034;1m----SCRIPT V.1 FREE"
-	echo ""
-	echo -e "\e[032;1m ( ใส่รหัสผ่านติดตั้ง... )"
-	echo ""
-read -p "๏๏๏โปรดใส่รหัสสำหรับติดตั้งสคลิปนี้.. : " passwds
-wget -q -O /usr/bin/pass http://27.254.81.20/~com/pass.txt
-if ! grep -w -q $passwds /usr/bin/pass; then
-clear
-echo ""
-echo ""
-echo " เสียใจด้วย รหัสผิดว่ะ ถ้าไม่มีรหัสติดต่อแอดมินฯ เฮียเบิร์ด"
-echo ""
-echo " เด้งไปเลยเฟสนี้แน่นอน : www.facebook.com/ceonw"
-echo ""
-echo ""
-rm /usr/bin/pass
-rm debian7.sh
-exit
-fi
-
-
 # ******************************************
 # Program: Autoscript Setup Vps 2018
 # Website: www.AnonymousVpn8.com.my
@@ -76,6 +8,20 @@ fi
 # Last Updated: 03-01-2018
 # ******************************************
 # MULA SETUP
+myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
+if [ $USER != 'root' ]; then
+echo "Sorry, for run the script please using root user"
+exit 1
+fi
+if [[ "$EUID" -ne 0 ]]; then
+echo "Sorry, you need to run this as root"
+exit 2
+fi
+if [[ ! -e /dev/net/tun ]]; then
+echo "TUN is not available"
+exit 3
+fi
 echo "
 AUTOSCRIPT BY AnonymousVpn8.TK
 AMBIL PERHATIAN !!!"
@@ -163,10 +109,6 @@ echo "<pre>Setup by inject69 | telegram @AnonymousVpn8 | website AnonymousVpn8.t
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 wget -O /etc/nginx/conf.d/vps.conf "http://autoscriptnobita.tk/rendum/vps.conf"
 sed -i 's/listen = \/var\/run\/php7.0-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.0/fpm/pool.d/www.conf
-useradd -m vps && mkdir -p /home/vps/public_html
-rm /home/vps/public_html/index.html && echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
-chown -R www-data:www-data /home/vps/public_html && chmod -R g+rw /home/vps/public_html
-service php5-fpm restart && service nginx restart
 # etc
 wget -O /home/vps/public_html/client.ovpn "https://raw.githubusercontent.com/khungphat84/noname/master/client.ovpn"
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
