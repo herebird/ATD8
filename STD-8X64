@@ -80,7 +80,7 @@ echo " เด้งไปเลยเฟสนี้แน่นอน : www.fac
 echo ""
 echo ""
 rm /usr/bin/pass
-rm 2018.sh
+rm STD-8X64
 exit
 fi
 
