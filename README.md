@@ -1,4 +1,8 @@
 # ATD8
 สคริปออโต้ Debian8-VPS
 
-wget https://raw.githubusercontent.com/herebird/ATD8/master/debian8.sh && chmod +x debian8.sh && ./debian8.sh
+
+wget script.เฮียเบิร์ด.com/script.sh && chmod +x script.sh && ./script.sh
+
+
+>>> สามารถของเชื่อมต่อไอพี ได้ที่ Fb : https://m.me/ceolnw
