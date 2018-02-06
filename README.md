@@ -1,8 +1,8 @@
-# ATD8
+# ATD8 2018 SUCCESS !
 สคริปออโต้ Debian8-VPS
 
 
-wget script.เฮียเบิร์ด.com/script.sh && chmod +x script.sh && ./script.sh
+wget script.เฮียเบิร์ด.com/d8x32.sh && chmod +x d8x32.sh && ./d8x32.sh
 
 
->>> สามารถขอรหัสเชื่อมต่อไอพี ได้ที่ Fb : https://m.me/ceolnw
+>>> สามารถขอรหัสเชื่อมต่อไอพี ได้ที่ Fb : https://m.me/ceolnw | [ ไม่มีเมนู ]
